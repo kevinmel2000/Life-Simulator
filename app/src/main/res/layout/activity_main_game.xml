@@ -90,7 +90,7 @@
                             android:max="100"
                             android:paddingLeft="5dp"
                             android:paddingRight="5dp"
-                            android:progress="45" />
+                            android:progress="45"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -188,7 +188,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="+ Age" />
+            android:text="+ Age"/>
 
         <Button
             android:id="@+id/buttonActivities"

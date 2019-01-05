@@ -72,6 +72,12 @@ public class MainGame extends AppCompatActivity {
         //create a TextView with Layout parameters according to your needs
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         //if your parent Layout is relativeLayout, just change the word LinearLayout with RelativeLayout
+        final TextView topView = new TextView(this);
+        topView.setLayoutParams(lparams);
+        topView.setTextSize(15);
+        topView.setTextColor(Color.parseColor("#3F51B5"));
+        topView.setText("Age: " + mainPerson.getAge() + " years");
+
         final TextView tv = new TextView(this);
         tv.setLayoutParams(lparams);
         tv.setTextSize(15);
@@ -95,7 +101,9 @@ public class MainGame extends AppCompatActivity {
 
         //get the parent layout for your new TextView and add the new TextView to it
         LinearLayout linearLayout = findViewById(R.id.insideScrollView);
+        linearLayout.addView(topView);
         linearLayout.addView(tv);
+
 
         // Displays bankaccount balance now
         String bankBalanceString = formatToCurrency(mainPerson.getBankBalance());
