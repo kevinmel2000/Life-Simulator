@@ -26,8 +26,8 @@ public class inputActivity extends AppCompatActivity {
         ToggleButton btnFemale = (ToggleButton)findViewById(R.id.btnFemale);
         TextView errorView = (TextView)findViewById(R.id.errorTextBox);
 
-        String firstNameText = firstName.getText().toString();
-        String lastNameText = lastName.getText().toString();
+        String firstNameText = firstName.getText().toString().substring(0,1).toUpperCase() + firstName.getText().toString().substring(1);
+        String lastNameText = lastName.getText().toString().substring(0,1).toUpperCase() + lastName.getText().toString().substring(1);
         String genderText = "";
 
         /*     Error checking here     */

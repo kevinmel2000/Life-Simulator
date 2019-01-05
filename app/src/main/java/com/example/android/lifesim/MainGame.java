@@ -78,7 +78,7 @@ public class MainGame extends AppCompatActivity {
         Button bankAccountView = (Button)findViewById(R.id.bankView);
         bankAccountView.setText("Bank Account\n" + bankBalanceString);
 
-        //Updates ProgressBars to 100 to begin
+        // Updates ProgressBars to 100 to begin
         ProgressBar healthBar = (ProgressBar)findViewById(R.id.progressbarHealth);
         healthBar.setProgress(mainPerson.getHealth());
         ProgressBar happyBar = (ProgressBar)findViewById(R.id.progressbarHappy);
