@@ -77,9 +77,8 @@ public class MainGame extends AppCompatActivity {
 
     void nextAgeTextView(Person mainPerson){
 
-        // All constant
-        ScrollView scroll = findViewById(R.id.scrollviewmain);
-        scroll.fullScroll(View.FOCUS_DOWN);
+        maintainScrollViewDown(); // keeps scroll focused downward.
+
 
         /* DYAMICALLY ADDS TEXVIEW TO SCROLLVIEW */
         //create a TextView with Layout parameters according to your needs
@@ -177,6 +176,13 @@ public class MainGame extends AppCompatActivity {
         ProgressBar happyBar = (ProgressBar)findViewById(R.id.progressbarHappy);
         happyBar.setProgress(mainPerson.getHappiness());
 
+    }
+
+    // Constant --> Keeps scrollview focused downwards
+    void maintainScrollViewDown(){
+        // All constant
+        ScrollView scroll = findViewById(R.id.scrollviewmain);
+        scroll.fullScroll(View.FOCUS_DOWN);
     }
 
 
