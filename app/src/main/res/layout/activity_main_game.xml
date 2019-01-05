@@ -4,11 +4,213 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E5E5E5"
     tools:context=".MainGame">
 
-    <TextView
-        android:id="@+id/tmp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/topbarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/lifecycleImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxHeight="60dp"
+                android:maxWidth="60dp"
+                android:src="@drawable/baby" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nameView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text=""
+                    android:textColor="#544568"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/nameViewLast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text=""
+                    android:textColor="#544568"
+                    android:textSize="15sp" />
+
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Happiness"
+                            android:textSize="10sp" />
+
+                        <ProgressBar
+                            android:id="@+id/progressbarHappy"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:progress="45" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Health"
+                            android:textSize="10sp" />
+
+
+                        <ProgressBar
+                            android:id="@+id/progressbarHealth"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="100"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:progress="45" />
+
+
+                    </LinearLayout>
+
+
+                    <Button
+                        android:id="@+id/bankButtonView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonbackground"
+                        android:minWidth="50dp"
+                        android:padding="10dp"
+                        android:text="Bank Account \n"
+                        android:textAlignment="center"
+                        android:textColor="#8A8A8A"
+
+                        />
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollviewmain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/activityBarLinearLayout"
+        android:layout_below="@+id/topbarlayout"
+        >
+
+        <LinearLayout
+            android:id="@+id/insideScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/activityBarLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:minHeight="90dp"
+        android:orientation="horizontal">
+
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/bottomlayerbutton_rightbordercolor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/homeicon"
+            android:text="Assets"/>
+
+        <Button
+            android:id="@+id/progressAge"
+            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/bottomlayerbutton_rightbordercolor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="+ Age" />
+
+        <Button
+            android:id="@+id/buttonActivities"
+            style="?android:attr/buttonBarButtonStyle"
+            android:background="#544568"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/meditationicon"
+            android:text="Activities" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>
+
+
+
+
+
+
+
+
+
+

@@ -18,8 +18,10 @@ public class MainGame extends AppCompatActivity {
         String firstNameText = intent.getStringExtra("firstName");
         String lastNameText = intent.getStringExtra("lastName");
 
-        TextView tmp = (TextView)findViewById(R.id.tmp);
-        tmp.setText(genderText + " " + firstNameText + " " + lastNameText);
+        TextView nameView = (TextView)findViewById(R.id.nameView);
+        TextView nameViewLast = (TextView)findViewById(R.id.nameViewLast);
+        nameView.setText(firstNameText);
+        nameViewLast.setText(lastNameText);
 
 
     }
