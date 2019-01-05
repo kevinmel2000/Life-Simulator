@@ -53,8 +53,8 @@
             android:orientation="horizontal">
 
             <ToggleButton
-                android:background="@drawable/gendertoggle"
                 android:id="@+id/btnMale"
+                android:background="@drawable/gendertoggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -65,8 +65,8 @@
                 android:textSize="15sp" />
 
             <ToggleButton
-                android:background="@drawable/gendertoggle"
                 android:id="@+id/btnFemale"
+                android:background="@drawable/gendertoggle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
