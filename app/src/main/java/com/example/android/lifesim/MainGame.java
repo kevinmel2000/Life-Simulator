@@ -76,7 +76,7 @@ public class MainGame extends AppCompatActivity {
         topView.setLayoutParams(lparams);
         topView.setTextSize(15);
         topView.setTextColor(Color.parseColor("#3F51B5"));
-        topView.setText("Age: " + mainPerson.getAge() + " years");
+        topView.setText(getString(R.string.InitialTextViewAge, mainPerson.getAge()));
 
         final TextView tv = new TextView(this);
         tv.setLayoutParams(lparams);
