@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -19,6 +20,13 @@ public class inputActivity extends AppCompatActivity {
     }
 
     public void beginMainGame(View view) {
+
+        String firstNameMale[] = {"Mike", "Rob", "Carson", "Brandon", "Norman", "John"};
+        String firstNameFemale[] = {"Linda", "Rachel", "Madeline", "Kara", "Kylie"};
+        String lastNameArray[] = {"Johnson", "Swift", "Smith", "Gates", "Bates", "Emerson"};
+
+
+
         Intent intent = new Intent(this, MainGame.class);
 
         EditText firstName = (EditText)findViewById(R.id.firstName);
@@ -27,9 +35,31 @@ public class inputActivity extends AppCompatActivity {
         ToggleButton btnFemale = (ToggleButton)findViewById(R.id.btnFemale);
         TextView errorView = (TextView)findViewById(R.id.errorTextBox);
 
+        CheckBox randomCheckbox = (CheckBox)findViewById(R.id.randomCheckbox);
+        if(randomCheckbox.isChecked()){
+            String genderText = maleOrFemale();
+            String firstNameText = "";
+            String lastNameText = randArrayTitle(lastNameArray);
+
+            if(genderText == "Male"){
+                firstNameText = randArrayTitle(firstNameMale);
+            }else{
+                firstNameText = randArrayTitle(firstNameFemale);
+            }
+
+
+            intent.putExtra("firstName", firstNameText);
+            intent.putExtra("lastName", lastNameText);
+            intent.putExtra("gender", genderText);
+
+            startActivity(intent);
+            return;
+        }
+
         String firstNameText = firstName.getText().toString().substring(0,1).toUpperCase() + firstName.getText().toString().substring(1);
         String lastNameText = lastName.getText().toString().substring(0,1).toUpperCase() + lastName.getText().toString().substring(1);
         String genderText = "";
+
 
         /*     Error checking here     */
         if(firstName.getText().toString().isEmpty() || lastName.getText().toString().isEmpty()){ // if either name is blank
@@ -60,6 +90,30 @@ public class inputActivity extends AppCompatActivity {
         intent.putExtra("gender", genderText);
 
         startActivity(intent);
+    }
+
+    public String maleOrFemale(){
+        int size = 1;
+        int randomNum = (int)(Math.random() * ((size) + 1));
+
+        if(randomNum == 1){
+            return "Male";
+        } else if(randomNum == 0){
+            return "Female";
+        }
+
+        return "";
+    }
+
+    // Randomly returns a string in an array
+    public String randArrayTitle(String[] jobTitles){
+
+        int size = jobTitles.length - 1; // size of array
+
+
+        int randomNum = (int)(Math.random() * ((size) + 1));
+        return jobTitles[randomNum];
+
     }
 
     // returns bool if string has any whitespace or not

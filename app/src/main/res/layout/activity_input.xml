@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="20dp"
                 android:textColor="#8A8A8A"
                 android:textOff="Female"
                 android:textOn="Female"
@@ -78,6 +78,17 @@
 
 
         </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/randomCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Randomize Person"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#8A8A8A"
+            />
 
         <TextView
             android:id="@+id/errorTextBox"
