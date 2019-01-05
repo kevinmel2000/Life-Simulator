@@ -29,4 +29,8 @@ public class Person {
     }
     public int getHappiness() { return happiness; }
     public int getHealth() { return health; }
+
+    public void upAge() {
+        this.age += 1;
+    }
 }

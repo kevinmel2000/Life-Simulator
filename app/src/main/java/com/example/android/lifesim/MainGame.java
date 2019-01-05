@@ -62,6 +62,62 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
+        Button upAgeButton = (Button)findViewById(R.id.progressAge);
+        upAgeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainPerson.upAge();
+                nextAgeTextView(mainPerson);
+            }
+        });
+
+
+    }
+
+    void nextAgeTextView(Person mainPerson){
+
+        /* DYAMICALLY ADDS TEXVIEW TO SCROLLVIEW */
+        //create a TextView with Layout parameters according to your needs
+        LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        //if your parent Layout is relativeLayout, just change the word LinearLayout with RelativeLayout
+        final TextView topView = new TextView(this);
+        topView.setLayoutParams(lparams);
+        topView.setTextSize(15);
+        topView.setTextColor(Color.parseColor("#3F51B5"));
+        topView.setText(getString(R.string.InitialTextViewAge, mainPerson.getAge()));
+
+        final TextView tv = new TextView(this);
+        tv.setLayoutParams(lparams);
+        tv.setTextSize(15);
+        tv.setTextColor(Color.BLACK);
+        tv.setPadding(0,0,0,40);
+
+        /*Sets Drawable for border on bottom of textview in scrollview*/
+        final int sdk = android.os.Build.VERSION.SDK_INT;   // gets int version of os build
+        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) // if os is less than Jelly Bean then make it drawable
+        {
+            tv.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.maingametextviewborderbottom) );
+        } else {
+            tv.setBackground(ContextCompat.getDrawable(this, R.drawable.maingametextviewborderbottom));
+        }
+
+        //get the parent layout for your new TextView and add the new TextView to it
+        LinearLayout linearLayout = findViewById(R.id.insideScrollView);
+        linearLayout.addView(topView);
+        linearLayout.addView(tv);
+
+
+        // Displays bankaccount balance now
+        String bankBalanceString = formatToCurrency(mainPerson.getBankBalance());
+        Button bankAccountView = (Button)findViewById(R.id.bankView);
+        bankAccountView.setText("Bank Account\n" + bankBalanceString);
+
+        // Updates ProgressBars to 100 to begin
+        ProgressBar healthBar = (ProgressBar)findViewById(R.id.progressbarHealth);
+        healthBar.setProgress(mainPerson.getHealth());
+        ProgressBar happyBar = (ProgressBar)findViewById(R.id.progressbarHappy);
+        happyBar.setProgress(mainPerson.getHappiness());
+
     }
 
     // Prints first TextView to the ScrollView
@@ -127,5 +183,4 @@ public class MainGame extends AppCompatActivity {
 
         return format.format(money);
     }
-
-    }
+}
