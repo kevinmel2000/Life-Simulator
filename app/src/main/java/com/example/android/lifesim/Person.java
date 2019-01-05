@@ -21,20 +21,12 @@ public class Person {
     public int getAge() {
         return age;
     }
-
     public String getName() {
         return name;
     }
-
     public double getBankBalance() {
         return bankBalance;
     }
-
-    public int getHappiness() {
-        return happiness;
-    }
-
-    public int getHealth() {
-        return health;
-    }
+    public int getHappiness() { return happiness; }
+    public int getHealth() { return health; }
 }

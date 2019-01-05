@@ -1,14 +1,19 @@
 package com.example.android.lifesim;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -32,11 +37,30 @@ public class MainGame extends AppCompatActivity {
         nameViewLast.setText(lastNameText);
 
         // Initializing main character
-        Person mainPerson = new Person(firstNameText + " " + lastNameText, 0, 0, 100, 100);
+        final Person mainPerson = new Person(firstNameText + " " + lastNameText, 0, 0, 100, 100);
         printFirstTextView(mainPerson);
 
 
+        // BankAccount Button onClick Function
+        Button bankButton = (Button) findViewById(R.id.bankView);
+        bankButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
 
+
+                AlertDialog alertDialog = new AlertDialog.Builder(MainGame.this).create();
+                alertDialog.setTitle("Financial Information");
+                alertDialog.setMessage("Bank Account Balance: " + formatToCurrency(mainPerson.getBankBalance()));
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
 
     }
 
@@ -95,4 +119,5 @@ public class MainGame extends AppCompatActivity {
 
         return format.format(money);
     }
-}
+
+    }
