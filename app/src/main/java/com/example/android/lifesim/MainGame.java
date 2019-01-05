@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +76,10 @@ public class MainGame extends AppCompatActivity {
     }
 
     void nextAgeTextView(Person mainPerson){
+
+        // All constant
+        ScrollView scroll = findViewById(R.id.scrollviewmain);
+        scroll.fullScroll(View.FOCUS_DOWN);
 
         /* DYAMICALLY ADDS TEXVIEW TO SCROLLVIEW */
         //create a TextView with Layout parameters according to your needs
