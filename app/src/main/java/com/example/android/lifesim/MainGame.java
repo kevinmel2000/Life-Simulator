@@ -5,8 +5,11 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.text.NumberFormat;
 
 public class MainGame extends AppCompatActivity {
 
@@ -14,6 +17,7 @@ public class MainGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
+
 
         /* loads in data from inputActivity screen */
         Intent intent = getIntent();
@@ -26,13 +30,18 @@ public class MainGame extends AppCompatActivity {
         nameView.setText(firstNameText);
         nameViewLast.setText(lastNameText);
 
-        Person mainPerson = new Person(firstNameText + " " + lastNameText, 0);
+        // Initializing main character
+        Person mainPerson = new Person(firstNameText + " " + lastNameText, 0, 0);
         printFirstTextView(mainPerson);
+
+
+
 
     }
 
     // Prints first TextView to the ScrollView
     void printFirstTextView(Person mainPerson){
+
 
         /* DYAMICALLY ADDS TEXVIEW TO SCROLLVIEW */
         //create a TextView with Layout parameters according to your needs
@@ -63,5 +72,18 @@ public class MainGame extends AppCompatActivity {
         LinearLayout linearLayout = findViewById(R.id.insideScrollView);
         linearLayout.addView(tv);
 
+        Button bankAccountView = (Button)findViewById(R.id.bankView);
+        bankAccountView.setText(getString(R.string.bankAccountButtonText) + formatToCurrency(mainPerson.getBankBalance()));
+
+    }
+
+
+
+    /*Takes in a double and returns a string formatted to currency*/
+    String formatToCurrency(double money){
+
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+
+        return format.format(money);
     }
 }

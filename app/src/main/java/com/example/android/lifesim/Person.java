@@ -3,10 +3,12 @@ package com.example.android.lifesim;
 public class Person {
     private String name;
     private int age;
+    private double bankBalance;
 
-    public Person(String name, int age){
+    public Person(String name, int age, double bankBalance){
         this.name = name;
         this.age = age;
+        this.bankBalance = bankBalance;
     }
 
 
@@ -18,5 +20,9 @@ public class Person {
 
     public String getName() {
         return name;
+    }
+
+    public double getBankBalance() {
+        return bankBalance;
     }
 }
