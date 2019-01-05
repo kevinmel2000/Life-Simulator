@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.NumberFormat;
+import java.util.Random;
 
 public class MainGame extends AppCompatActivity {
 
@@ -38,7 +39,7 @@ public class MainGame extends AppCompatActivity {
         nameViewLast.setText(lastNameText);
 
         // Initializing main character
-        final Person mainPerson = new Person(firstNameText + " " + lastNameText, 0, 0, 100, 100);
+        final Person mainPerson = new Person(firstNameText + " " + lastNameText, 0, 0, randomNumberInBetweenMaxMin(70, 100), 100);
         printFirstTextView(mainPerson);
 
 
@@ -193,5 +194,11 @@ public class MainGame extends AppCompatActivity {
         NumberFormat format = NumberFormat.getCurrencyInstance();
 
         return format.format(money);
+    }
+
+    // Returns a random number in between a min/max
+    int randomNumberInBetweenMaxMin(int min, int max){
+        return (new Random()).nextInt((max - min) + 1) + min;
+
     }
 }
