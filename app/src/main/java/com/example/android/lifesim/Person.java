@@ -4,11 +4,15 @@ public class Person {
     private String name;
     private int age;
     private double bankBalance;
+    private int happiness;
+    private int health;
 
-    public Person(String name, int age, double bankBalance){
+    public Person(String name, int age, double bankBalance, int happiness, int health){
         this.name = name;
         this.age = age;
         this.bankBalance = bankBalance;
+        this.happiness = happiness;
+        this.health = health;
     }
 
 
@@ -24,5 +28,13 @@ public class Person {
 
     public double getBankBalance() {
         return bankBalance;
+    }
+
+    public int getHappiness() {
+        return happiness;
+    }
+
+    public int getHealth() {
+        return health;
     }
 }

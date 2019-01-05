@@ -122,7 +122,6 @@
                         android:background="@drawable/buttonbackground"
                         android:minWidth="50dp"
                         android:padding="10dp"
-                        android:text="@string/bankAccountButtonText"
                         android:textAlignment="center"
                         android:textColor="#8A8A8A"
 

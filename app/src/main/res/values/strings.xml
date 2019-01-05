@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">LifeSim</string>
     <string name="InitialTextViewIntro">%1$s was born\n</string>
-    <string name="bankAccountButtonText">Bank Account\n</string>
 </resources>

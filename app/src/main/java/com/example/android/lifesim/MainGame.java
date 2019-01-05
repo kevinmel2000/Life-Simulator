@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -31,7 +32,7 @@ public class MainGame extends AppCompatActivity {
         nameViewLast.setText(lastNameText);
 
         // Initializing main character
-        Person mainPerson = new Person(firstNameText + " " + lastNameText, 0, 0);
+        Person mainPerson = new Person(firstNameText + " " + lastNameText, 0, 0, 100, 100);
         printFirstTextView(mainPerson);
 
 
@@ -72,8 +73,16 @@ public class MainGame extends AppCompatActivity {
         LinearLayout linearLayout = findViewById(R.id.insideScrollView);
         linearLayout.addView(tv);
 
+        // Displays bankaccount balance now
+        String bankBalanceString = formatToCurrency(mainPerson.getBankBalance());
         Button bankAccountView = (Button)findViewById(R.id.bankView);
-        bankAccountView.setText(getString(R.string.bankAccountButtonText) + formatToCurrency(mainPerson.getBankBalance()));
+        bankAccountView.setText("Bank Account\n" + bankBalanceString);
+
+        //Updates ProgressBars to 100 to begin
+        ProgressBar healthBar = (ProgressBar)findViewById(R.id.progressbarHealth);
+        healthBar.setProgress(mainPerson.getHealth());
+        ProgressBar happyBar = (ProgressBar)findViewById(R.id.progressbarHappy);
+        happyBar.setProgress(mainPerson.getHappiness());
 
     }
 
