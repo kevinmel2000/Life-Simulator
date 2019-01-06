@@ -128,13 +128,19 @@ public class MainGame extends AppCompatActivity {
         printSickness(mainPerson, tv);
 
 
+
     }
 
-    // Prints sickness to tv if they're sick
+    // Prints sickness to tv if they're sick and takes away their health
     void printSickness(Person mainPerson, TextView tv){
         // if person is sick, display to screen
         if(mainPerson.getSickness() != null){
             tv.append("You're sick with " + mainPerson.getSickness().getTitle() + ", you should see a doctor!");
+
+            // Takes away their health based on damage per turn
+            int currentHealth = mainPerson.getHealth();
+            int damageHealth = mainPerson.getSickness().getDamagePerTurn();
+            mainPerson.setHealth(currentHealth - damageHealth);
         }
     }
 

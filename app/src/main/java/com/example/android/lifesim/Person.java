@@ -37,6 +37,9 @@ public class Person {
     public int getHealth() { return health; }
     public Sickness getSickness() { return sickness; }
 
+    /*SETTER FUNCTIONS*/
+    public void setHealth(int health){ this.health = health; }
+
     // makes person's age increase by one
     public void upAge() {
         this.age += 1;
