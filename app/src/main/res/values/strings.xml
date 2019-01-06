@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LifeSim</string>
+    <string name="app_name">Life Simulator</string>
     <string name="InitialTextViewIntro">I am %1$s.\nI was born.</string>
     <string name="InitialTextViewAge">Age: %1$d years</string>
 </resources>
