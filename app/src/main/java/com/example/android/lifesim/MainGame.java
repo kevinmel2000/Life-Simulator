@@ -64,12 +64,27 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
+        // Up Age button onClick function
         Button upAgeButton = (Button)findViewById(R.id.progressAge);
         upAgeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainPerson.upAge();
                 nextAgeTextView(mainPerson);
+            }
+        });
+
+
+        // Activity Button onClick function
+        Button activitiesButton = (Button)findViewById(R.id.buttonActivities);
+        activitiesButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainGame.this, activitiesActivity.class);
+
+                
+
+                startActivity(intent);
             }
         });
 

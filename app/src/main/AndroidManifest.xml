@@ -16,8 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".inputActivity" android:noHistory="true"/>
-        <activity android:name=".MainGame"></activity>
+        <activity
+            android:name=".inputActivity"
+            android:noHistory="true" />
+        <activity android:name=".MainGame" />
+        <activity android:name=".activitiesActivity"></activity>
     </application>
 
 </manifest>
