@@ -20,7 +20,11 @@
             android:name=".inputActivity"
             android:noHistory="true" />
         <activity android:name=".MainGame" />
-        <activity android:name=".activitiesActivity"></activity>
+        <activity android:name=".activitiesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.lifesim.MainGame" />
+        </activity>
     </application>
 
 </manifest>

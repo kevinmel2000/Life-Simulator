@@ -82,7 +82,9 @@ public class MainGame extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(MainGame.this, activitiesActivity.class);
 
-                
+                //To pass mainPerson obj
+                intent.putExtra("personObj", mainPerson);
+
 
                 startActivity(intent);
             }
