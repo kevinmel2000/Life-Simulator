@@ -1,5 +1,6 @@
 package com.example.android.lifesim;
 
+import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,6 +26,12 @@ public class MainGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
+
+        // Hides Action Bar on this page
+        ActionBar actionBar = getActionBar();
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
 
 
         /* loads in data from inputActivity screen */

@@ -14,6 +14,7 @@ public class activitiesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities);
 
+        // Sets up Action Bar
         ActionBar actionBar = getActionBar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -24,6 +25,8 @@ public class activitiesActivity extends AppCompatActivity {
 
 
     }
+
+    // Adds back button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
