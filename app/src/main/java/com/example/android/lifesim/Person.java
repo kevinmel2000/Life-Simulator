@@ -62,14 +62,15 @@ public class Person {
 
 
 
-
+    // Possibly makes person sick, unless they already have a sickness or are under 12
     public void randomSickness(){
         if(this.getAge() < 12){
             // Can't get sick
         }
-        else{
-            // 10% chance to get sick for life
-            int randNum = randomNumberInBetweenMaxMin(1, 100);
+        // if the person is not sick
+        else if(this.getSickness() == null){
+            // 10% chance to get sick each turn
+            int randNum = randomNumberInBetweenMaxMin(1, 100); // generate sickness name
             if(randNum >= 40 && randNum <= 49){ // 10% chance
                 Sickness sickness = new Sickness(randArrayTitle(sicknessNames));
 

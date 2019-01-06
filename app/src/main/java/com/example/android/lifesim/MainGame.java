@@ -123,6 +123,7 @@ public class MainGame extends AppCompatActivity {
         ProgressBar happyBar = (ProgressBar)findViewById(R.id.progressbarHappy);
         happyBar.setProgress(mainPerson.getHappiness());
 
+        // Person possibly gets sick here
         mainPerson.randomSickness();
         if(mainPerson.getSickness() != null){
             tv.append("" + mainPerson.getSickness().getTitle() + " " + mainPerson.getSickness().getDescription());
