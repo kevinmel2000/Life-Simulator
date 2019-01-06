@@ -125,10 +125,17 @@ public class MainGame extends AppCompatActivity {
 
         // Person possibly gets sick here
         mainPerson.randomSickness();
-        if(mainPerson.getSickness() != null){
-            tv.append("" + mainPerson.getSickness().getTitle() + " " + mainPerson.getSickness().getDescription());
-        }
+        printSickness(mainPerson, tv);
 
+
+    }
+
+    // Prints sickness to tv if they're sick
+    void printSickness(Person mainPerson, TextView tv){
+        // if person is sick, display to screen
+        if(mainPerson.getSickness() != null){
+            tv.append("You're sick with " + mainPerson.getSickness().getTitle() + ", you should see a doctor!");
+        }
     }
 
     // Prints first TextView to the ScrollView
