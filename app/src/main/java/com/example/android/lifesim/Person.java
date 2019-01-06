@@ -39,6 +39,7 @@ public class Person {
 
     /*SETTER FUNCTIONS*/
     public void setHealth(int health){ this.health = health; }
+    public void setHappiness(int happiness){this.happiness = happiness;}
 
     // makes person's age increase by one
     public void upAge() {
