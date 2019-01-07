@@ -6,6 +6,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 public class activitiesActivity extends AppCompatActivity {
 
@@ -36,5 +37,9 @@ public class activitiesActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void goToDoctorClick(View view) {
+        // create popup for going to doctor
     }
 }
