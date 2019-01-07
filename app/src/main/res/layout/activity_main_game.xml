@@ -214,7 +214,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:visibility="gone"
+        android:visibility="visible"
         >
         <RelativeLayout
             android:layout_width="match_parent"
@@ -230,6 +230,7 @@
             />
 
         <LinearLayout
+            android:id="@+id/doctorOfficeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -237,6 +238,7 @@
             android:background="@drawable/bottomborderlinearlayout"
             android:layout_marginTop="10dp"
             android:padding="10dp"
+            android:clickable="true"
             >
 
             <ImageView

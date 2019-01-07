@@ -120,6 +120,14 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
+        // Up Age button onClick function
+        LinearLayout doctorOfficeButton = (LinearLayout) findViewById(R.id.doctorOfficeButton);
+        doctorOfficeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
