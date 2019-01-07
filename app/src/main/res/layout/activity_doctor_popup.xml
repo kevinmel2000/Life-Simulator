@@ -38,28 +38,45 @@
         android:layout_below="@+id/tophorizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/doctorOne"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Placeholder $199"
-            android:layout_weight="0.33"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Placeholder $199"
-            android:layout_weight="0.33"
-            />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Placeholder $199"
-            android:layout_weight="0.33"
-            />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="40dp">
+
+            <Button
+                android:id="@+id/doctor1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:background="@drawable/custombuttonbackground"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                />
+            <Button
+                android:id="@+id/doctor2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:background="@drawable/custombuttonbackground"
+                android:layout_centerInParent="true"
+                />
+            <Button
+                android:id="@+id/doctor3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:background="@drawable/custombuttonbackground"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                />
+
+
+        </RelativeLayout>
+
+
+
 
 
     </LinearLayout>

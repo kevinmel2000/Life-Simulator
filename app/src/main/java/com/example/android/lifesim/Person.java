@@ -41,6 +41,7 @@ public class Person implements Serializable{
     /*SETTER FUNCTIONS*/
     public void setHealth(int health){ this.health = health; }
     public void setHappiness(int happiness){this.happiness = happiness;}
+    public void setSickness(Sickness sickness){this.sickness = sickness;}
 
     // makes person's age increase by one
     public void upAge() {
@@ -48,7 +49,7 @@ public class Person implements Serializable{
     }
 
     // Returns a random number in between a min/max
-    int randomNumberInBetweenMaxMin(int min, int max){
+    private int randomNumberInBetweenMaxMin(int min, int max){
         return (new Random()).nextInt((max - min) + 1) + min;
 
     }
@@ -69,7 +70,7 @@ public class Person implements Serializable{
 
     // Possibly makes person sick, unless they already have a sickness or are under 12
     public void randomSickness(){
-        if(this.getAge() < 12){
+        if(this.getAge() < 15){
             // Can't get sick
         }
         // if the person is not sick

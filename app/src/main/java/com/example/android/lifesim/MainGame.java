@@ -22,6 +22,8 @@ import java.util.Random;
 
 public class MainGame extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -245,7 +247,7 @@ public class MainGame extends AppCompatActivity {
 
 
     /*Takes in a double and returns a string formatted to currency*/
-    String formatToCurrency(double money){
+    public String formatToCurrency(double money){
 
         NumberFormat format = NumberFormat.getCurrencyInstance();
 

@@ -21,7 +21,7 @@ public class activitiesActivity extends AppCompatActivity {
 
         // Sets up Action Bar
         ActionBar actionBar = getActionBar();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
         // Getting mainPerson obj
@@ -34,13 +34,9 @@ public class activitiesActivity extends AppCompatActivity {
         doctorLinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
-                Intent intent = new Intent(getApplicationContext(), doctorPopup.class);
 
-                // Sends mainPerson object to BankPopup.java class
-                intent.putExtra("mainPerson", mainPerson);
 
-                startActivity(intent);
+
             }
         });
 
