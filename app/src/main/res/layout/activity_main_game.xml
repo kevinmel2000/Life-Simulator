@@ -213,9 +213,12 @@
         android:id="@+id/activityPopup"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:visibility="gone"
         >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <ImageButton
             android:id="@+id/activityPopupBackButton"
@@ -225,6 +228,38 @@
             android:layout_height="wrap_content"
             android:src="@drawable/backbutton"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/activityPopupBackButton"
+            android:background="@drawable/bottomborderlinearlayout"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/hearticon"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor's Office"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="#000"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:textSize="20sp"
+                />
+
+
+        </LinearLayout>
+
+        </RelativeLayout>
 
 
     </LinearLayout>
