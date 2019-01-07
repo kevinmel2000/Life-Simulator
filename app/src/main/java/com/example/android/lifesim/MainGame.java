@@ -36,12 +36,12 @@ public class MainGame extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-
         /* loads in data from inputActivity screen */
         Intent intent = getIntent();
         String genderText = intent.getStringExtra("gender");
         String firstNameText = intent.getStringExtra("firstName");
         String lastNameText = intent.getStringExtra("lastName");
+
 
         TextView nameView = (TextView)findViewById(R.id.nameView);
         TextView nameViewLast = (TextView)findViewById(R.id.nameViewLast);
@@ -89,13 +89,8 @@ public class MainGame extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LinearLayout activityPopup =(LinearLayout)findViewById(R.id.activityPopup);
-                LinearLayout topBarLayout = (LinearLayout)findViewById(R.id.topbarlayout);
-                LinearLayout activityBarLinearLayout = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
 
-                activityPopup.setVisibility(View.GONE);
-                topBarLayout.setVisibility(View.VISIBLE);
-                activityBarLinearLayout.setVisibility(View.VISIBLE);
+                activityBackButtonFunction();
             }
         });
 
@@ -120,12 +115,21 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
-        // Up Age button onClick function
+        // Go to doctor office onclick button
         LinearLayout doctorOfficeButton = (LinearLayout) findViewById(R.id.doctorOfficeButton);
         doctorOfficeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                // pass mainPerson to new activity
+                Intent intent = new Intent(MainGame.this, doctorActivity.class);
+                intent.putExtra("mainPerson", mainPerson);
+
+                activityBackButtonFunction();
+
+
+
+                startActivity(intent);
             }
         });
 
@@ -181,8 +185,6 @@ public class MainGame extends AppCompatActivity {
         // Person possibly gets sick here
         mainPerson.randomSickness();
         printSickness(mainPerson, tv);
-
-
 
     }
 
@@ -273,7 +275,16 @@ public class MainGame extends AppCompatActivity {
         scroll.fullScroll(View.FOCUS_DOWN);
     }
 
+    // Makes back button work after you click activities button
+    void activityBackButtonFunction() {
+        LinearLayout activityPopup =(LinearLayout)findViewById(R.id.activityPopup);
+        LinearLayout topBarLayout = (LinearLayout)findViewById(R.id.topbarlayout);
+        LinearLayout activityBarLinearLayout = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
 
+        activityPopup.setVisibility(View.GONE);
+        topBarLayout.setVisibility(View.VISIBLE);
+        activityBarLinearLayout.setVisibility(View.VISIBLE);
+    }
 
     /*Takes in a double and returns a string formatted to currency*/
     public String formatToCurrency(double money){

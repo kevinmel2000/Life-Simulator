@@ -24,10 +24,13 @@
             android:configChanges="orientation"
             android:noHistory="true"
             android:screenOrientation="portrait" />
-        <activity android:name=".MainGame"
+        <activity
+            android:name=".MainGame"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
+        <activity android:name=".doctorActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            ></activity>
     </application>
 
 </manifest>
