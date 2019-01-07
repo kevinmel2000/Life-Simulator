@@ -8,6 +8,8 @@
     tools:context=".MainGame">
 
 
+
+
     <LinearLayout
         android:id="@+id/topbarlayout"
         android:layout_width="match_parent"
@@ -139,6 +141,8 @@
 
     </LinearLayout>
 
+
+
     <ScrollView
         android:id="@+id/scrollviewmain"
         android:layout_width="match_parent"
@@ -146,6 +150,7 @@
         android:layout_above="@+id/activityBarLinearLayout"
         android:layout_below="@+id/topbarlayout"
         >
+
 
         <LinearLayout
             android:id="@+id/insideScrollView"
@@ -200,6 +205,26 @@
             android:layout_weight="1"
             android:drawableRight="@drawable/meditationicon"
             android:text="Activities" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/activityPopup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:visibility="gone"
+        >
+
+        <ImageButton
+            android:id="@+id/activityPopupBackButton"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/backbutton"
+            />
 
 
     </LinearLayout>

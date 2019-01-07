@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
@@ -83,19 +84,39 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
+        // Activity Popup Back Button function
+        ImageButton backButton = (ImageButton) findViewById(R.id.activityPopupBackButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LinearLayout activityPopup =(LinearLayout)findViewById(R.id.activityPopup);
+                LinearLayout topBarLayout = (LinearLayout)findViewById(R.id.topbarlayout);
+                LinearLayout activityBarLinearLayout = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
+
+                activityPopup.setVisibility(View.GONE);
+                topBarLayout.setVisibility(View.VISIBLE);
+                activityBarLinearLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
 
         // Activity Button onClick function
-        Button activitiesButton = (Button)findViewById(R.id.buttonActivities);
+        final Button activitiesButton = (Button)findViewById(R.id.buttonActivities);
         activitiesButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent intent = new Intent(MainGame.this, activitiesActivity.class);
 
-                //To pass mainPerson obj
-                intent.putExtra("personObj", mainPerson);
+                LinearLayout activityPopup =(LinearLayout)findViewById(R.id.activityPopup);
+                LinearLayout topBarLayout = (LinearLayout)findViewById(R.id.topbarlayout);
+                LinearLayout activityBarLinearLayout = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
 
+                if(activityPopup.getVisibility() == View.GONE){
+                    activityPopup.setVisibility(View.VISIBLE);
+                    topBarLayout.setVisibility(View.GONE);
+                    activityBarLinearLayout.setVisibility(View.GONE);
 
-                startActivity(intent);
+                }
+
             }
         });
 
