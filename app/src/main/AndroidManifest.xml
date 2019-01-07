@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StartActivity"
+        <activity
+            android:name=".StartActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,19 +20,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:configChanges="orientation"
-            android:screenOrientation="portrait"
             android:name=".inputActivity"
-            android:noHistory="true" />
-        <activity android:name=".MainGame" />
-        <activity android:name=".activitiesActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            >
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MainGame" />
+        <activity
+            android:name=".activitiesActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.lifesim.MainGame" />
         </activity>
+        <activity android:name=".doctorPopup"></activity>
     </application>
 
 </manifest>

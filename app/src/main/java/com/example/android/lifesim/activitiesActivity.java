@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class activitiesActivity extends AppCompatActivity {
 
@@ -22,8 +26,23 @@ public class activitiesActivity extends AppCompatActivity {
 
         // Getting mainPerson obj
         Intent intent = getIntent();
-        Person mainPerson = (Person) intent.getSerializableExtra("personObj");
+        final Person mainPerson = (Person) intent.getSerializableExtra("personObj");
 
+
+        // onclick method for "Go to Doctor" button
+        final LinearLayout doctorLinearLayout = (LinearLayout)findViewById(R.id.gotodoctorview);
+        doctorLinearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                Intent intent = new Intent(getApplicationContext(), doctorPopup.class);
+
+                // Sends mainPerson object to BankPopup.java class
+                intent.putExtra("mainPerson", mainPerson);
+
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -39,7 +58,5 @@ public class activitiesActivity extends AppCompatActivity {
         }
     }
 
-    public void goToDoctorClick(View view) {
-        // create popup for going to doctor
-    }
+
 }
