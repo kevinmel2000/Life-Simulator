@@ -33,7 +33,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.lifesim.MainGame" />
         </activity>
-        <activity android:name=".doctorPopup"></activity>
+        <activity android:name=".doctorPopup"
+            android:configChanges="orientation"
+            android:screenOrientation="sensor"
+            android:theme="@style/Theme.UserDialog"
+            android:excludeFromRecents="true"
+            >
+        </activity>
     </application>
 
 </manifest>
