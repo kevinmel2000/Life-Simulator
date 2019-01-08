@@ -19,7 +19,7 @@ public class doctorActivity extends AppCompatActivity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        // makes popup window 70% by 30% of screen
+        // makes popup window 80% by 60% of screen
         getWindow().setLayout((int)(width * .8), (int)(height * .6));
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
