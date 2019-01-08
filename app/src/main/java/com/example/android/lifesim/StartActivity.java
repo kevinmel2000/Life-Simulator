@@ -17,6 +17,7 @@ public class StartActivity extends AppCompatActivity {
     public void inputScreenActivity(View view) {
         Intent intent = new Intent(this, inputActivity.class);
         startActivity(intent);
+        finish();
 
     }
 }

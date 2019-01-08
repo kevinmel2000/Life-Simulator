@@ -28,10 +28,6 @@
             android:name=".MainGame"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".doctorActivity"
-            android:label="Doctor's Office"
-            android:theme="@style/Theme.AppCompat.Dialog"
-            ></activity>
     </application>
 
 </manifest>

@@ -89,6 +89,7 @@ public class inputActivity extends AppCompatActivity {
         intent.putExtra("lastName", lastNameText);
         intent.putExtra("gender", genderText);
 
+
         startActivity(intent);
     }
 

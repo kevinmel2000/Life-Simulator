@@ -3,7 +3,7 @@ package com.example.android.lifesim;
 import java.io.Serializable;
 import java.util.Random;
 
-public class Person implements Serializable{
+public class Person implements Serializable {
     String[] sicknessNames = {"Influenza", "Common Cold", "Pneumonia"};
 
     // Attributes

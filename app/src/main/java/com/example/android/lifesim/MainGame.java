@@ -121,18 +121,21 @@ public class MainGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // pass mainPerson to new activity
-                Intent intent = new Intent(MainGame.this, doctorActivity.class);
-                intent.putExtra("mainPerson", mainPerson);
-
-                activityBackButtonFunction();
-
-
-
-                startActivity(intent);
+                //
             }
         });
 
+    }
+
+    // Makes back button work after you click activities button 
+    void activityBackButtonFunction() {
+        LinearLayout activityPopup =(LinearLayout)findViewById(R.id.activityPopup);
+        LinearLayout topBarLayout = (LinearLayout)findViewById(R.id.topbarlayout);
+        LinearLayout activityBarLinearLayout = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
+
+        activityPopup.setVisibility(View.GONE);
+        topBarLayout.setVisibility(View.VISIBLE);
+        activityBarLinearLayout.setVisibility(View.VISIBLE);
     }
 
     void nextAgeTextView(Person mainPerson){
@@ -185,6 +188,8 @@ public class MainGame extends AppCompatActivity {
         // Person possibly gets sick here
         mainPerson.randomSickness();
         printSickness(mainPerson, tv);
+
+
 
     }
 
@@ -275,16 +280,7 @@ public class MainGame extends AppCompatActivity {
         scroll.fullScroll(View.FOCUS_DOWN);
     }
 
-    // Makes back button work after you click activities button
-    void activityBackButtonFunction() {
-        LinearLayout activityPopup =(LinearLayout)findViewById(R.id.activityPopup);
-        LinearLayout topBarLayout = (LinearLayout)findViewById(R.id.topbarlayout);
-        LinearLayout activityBarLinearLayout = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
 
-        activityPopup.setVisibility(View.GONE);
-        topBarLayout.setVisibility(View.VISIBLE);
-        activityBarLinearLayout.setVisibility(View.VISIBLE);
-    }
 
     /*Takes in a double and returns a string formatted to currency*/
     public String formatToCurrency(double money){
