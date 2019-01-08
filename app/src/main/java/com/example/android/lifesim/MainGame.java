@@ -121,7 +121,17 @@ public class MainGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //
+                // if person is not sick
+                if(mainPerson.getSickness() == null){
+                    Toast drerrortoast = Toast.makeText(getApplicationContext(),
+                            "You must be sick to go to the doctor.",
+                            Toast.LENGTH_SHORT);
+
+                    drerrortoast.show();
+                }else{
+
+
+                }
             }
         });
 
