@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +34,7 @@ public class MainGame extends AppCompatActivity {
 
         // Hides Action Bar on this page
         ActionBar actionBar = getActionBar();
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
 
@@ -44,8 +45,8 @@ public class MainGame extends AppCompatActivity {
         String lastNameText = intent.getStringExtra("lastName");
 
 
-        TextView nameView = (TextView)findViewById(R.id.nameView);
-        TextView nameViewLast = (TextView)findViewById(R.id.nameViewLast);
+        TextView nameView = (TextView) findViewById(R.id.nameView);
+        TextView nameViewLast = (TextView) findViewById(R.id.nameViewLast);
         nameView.setText(firstNameText);
         nameViewLast.setText(lastNameText);
 
@@ -56,10 +57,8 @@ public class MainGame extends AppCompatActivity {
 
         // BankAccount Button onClick Function
         Button bankButton = (Button) findViewById(R.id.bankView);
-        bankButton.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v)
-            {
+        bankButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
 
                 AlertDialog alertDialog = new AlertDialog.Builder(MainGame.this).create();
@@ -76,7 +75,7 @@ public class MainGame extends AppCompatActivity {
         });
 
         // Up Age button onClick function
-        Button upAgeButton = (Button)findViewById(R.id.progressAge);
+        Button upAgeButton = (Button) findViewById(R.id.progressAge);
         upAgeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,16 +96,16 @@ public class MainGame extends AppCompatActivity {
 
 
         // Activity Button onClick function
-        final Button activitiesButton = (Button)findViewById(R.id.buttonActivities);
-        activitiesButton.setOnClickListener(new View.OnClickListener(){
+        final Button activitiesButton = (Button) findViewById(R.id.buttonActivities);
+        activitiesButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
 
-                LinearLayout activityPopup =(LinearLayout)findViewById(R.id.activityPopup);
-                LinearLayout topBarLayout = (LinearLayout)findViewById(R.id.topbarlayout);
-                LinearLayout activityBarLinearLayout = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
+                LinearLayout activityPopup = (LinearLayout) findViewById(R.id.activityPopup);
+                LinearLayout topBarLayout = (LinearLayout) findViewById(R.id.topbarlayout);
+                LinearLayout activityBarLinearLayout = (LinearLayout) findViewById(R.id.activityBarLinearLayout);
 
-                if(activityPopup.getVisibility() == View.GONE){
+                if (activityPopup.getVisibility() == View.GONE) {
                     activityPopup.setVisibility(View.VISIBLE);
                     topBarLayout.setVisibility(View.GONE);
                     activityBarLinearLayout.setVisibility(View.GONE);
@@ -123,7 +122,7 @@ public class MainGame extends AppCompatActivity {
             public void onClick(View v) {
 
                 // if person is not sick
-                if(mainPerson.getSickness() == null){
+                if (mainPerson.getSickness() == null) {
                     Toast drerrortoast = Toast.makeText(getApplicationContext(),
                             "You must be sick to go to the doctor.",
                             Toast.LENGTH_SHORT);
@@ -131,7 +130,7 @@ public class MainGame extends AppCompatActivity {
                     drerrortoast.show();
                 }
                 // if they are sick
-                else{
+                else {
                     hideActivityBarBringBackTopBar();
                     chooseDoctor(mainPerson);
 
@@ -140,15 +139,13 @@ public class MainGame extends AppCompatActivity {
         });
 
         // if they choose dr. 1
-        Button drButton1 = (Button)findViewById(R.id.drbutton1);
-        drButton1.setOnClickListener(new View.OnClickListener(){
+        Button drButton1 = (Button) findViewById(R.id.drbutton1);
+        drButton1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                if(!mainPerson.isWentToDoctorThisTurn()){
+            public void onClick(View v) {
+                if (!mainPerson.isWentToDoctorThisTurn()) {
                     curePerson(mainPerson, 1);
-                }
-                else
-                {
+                } else {
                     Toast failToast = Toast.makeText(getApplicationContext(),
                             "You already went to the doctor. Wait until next year",
                             Toast.LENGTH_LONG);
@@ -158,15 +155,13 @@ public class MainGame extends AppCompatActivity {
         });
 
         // if they choose dr. 2
-        Button drButton2 = (Button)findViewById(R.id.drbutton2);
-        drButton2.setOnClickListener(new View.OnClickListener(){
+        Button drButton2 = (Button) findViewById(R.id.drbutton2);
+        drButton2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                if(!mainPerson.isWentToDoctorThisTurn()){
+            public void onClick(View v) {
+                if (!mainPerson.isWentToDoctorThisTurn()) {
                     curePerson(mainPerson, 2);
-                }
-                else
-                {
+                } else {
                     Toast failToast = Toast.makeText(getApplicationContext(),
                             "You already went to the doctor. Wait until next year",
                             Toast.LENGTH_LONG);
@@ -176,15 +171,13 @@ public class MainGame extends AppCompatActivity {
         });
 
         // if they choose dr. 3
-        Button drButton3 = (Button)findViewById(R.id.drbutton3);
-        drButton3.setOnClickListener(new View.OnClickListener(){
+        Button drButton3 = (Button) findViewById(R.id.drbutton3);
+        drButton3.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                if(!mainPerson.isWentToDoctorThisTurn()){
+            public void onClick(View v) {
+                if (!mainPerson.isWentToDoctorThisTurn()) {
                     curePerson(mainPerson, 3);
-                }
-                else
-                {
+                } else {
                     Toast failToast = Toast.makeText(getApplicationContext(),
                             "You already went to the doctor. Wait until next year",
                             Toast.LENGTH_LONG);
@@ -199,24 +192,21 @@ public class MainGame extends AppCompatActivity {
         drBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RelativeLayout doctorLayout = (RelativeLayout)findViewById(R.id.doctorPopup);
+                RelativeLayout doctorLayout = (RelativeLayout) findViewById(R.id.doctorPopup);
                 doctorLayout.setVisibility(View.GONE);
             }
         });
     }
 
+    void nextAgeTextView(Person mainPerson) {
 
-    // Makes back button work after you click activities button 
-    void activityBackButtonFunction() {
-        hideActivityBarBringBackTopBar();
-    }
+        if (mainPerson.getHealth() <= 0) {
+            killPerson(mainPerson);
+        }
 
-
-    void nextAgeTextView(Person mainPerson){
         mainPerson.setWentToDoctorThisTurn(false);
 
         maintainScrollViewDown(); // keeps scroll focused downward.
-
 
         /* DYAMICALLY ADDS TEXVIEW TO SCROLLVIEW */
         //create a TextView with Layout parameters according to your needs
@@ -232,13 +222,13 @@ public class MainGame extends AppCompatActivity {
         tv.setLayoutParams(lparams);
         tv.setTextSize(15);
         tv.setTextColor(Color.BLACK);
-        tv.setPadding(0,0,0,40);
+        tv.setPadding(0, 0, 0, 40);
 
         /*Sets Drawable for border on bottom of textview in scrollview*/
         final int sdk = android.os.Build.VERSION.SDK_INT;   // gets int version of os build
-        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) // if os is less than Jelly Bean then make it drawable
+        if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) // if os is less than Jelly Bean then make it drawable
         {
-            tv.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.maingametextviewborderbottom) );
+            tv.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.maingametextviewborderbottom));
         } else {
             tv.setBackground(ContextCompat.getDrawable(this, R.drawable.maingametextviewborderbottom));
         }
@@ -251,13 +241,13 @@ public class MainGame extends AppCompatActivity {
 
         // Displays bankaccount balance now
         String bankBalanceString = formatToCurrency(mainPerson.getBankBalance());
-        Button bankAccountView = (Button)findViewById(R.id.bankView);
+        Button bankAccountView = (Button) findViewById(R.id.bankView);
         bankAccountView.setText("Bank Account\n" + bankBalanceString);
 
         // Updates ProgressBars
-        ProgressBar healthBar = (ProgressBar)findViewById(R.id.progressbarHealth);
+        ProgressBar healthBar = (ProgressBar) findViewById(R.id.progressbarHealth);
         healthBar.setProgress(mainPerson.getHealth());
-        ProgressBar happyBar = (ProgressBar)findViewById(R.id.progressbarHappy);
+        ProgressBar happyBar = (ProgressBar) findViewById(R.id.progressbarHappy);
         happyBar.setProgress(mainPerson.getHappiness());
 
         // Person possibly gets sick here
@@ -265,20 +255,18 @@ public class MainGame extends AppCompatActivity {
         printSickness(mainPerson, tv);
 
 
-
     }
 
     // Prints sickness to tv if they're sick and takes away their health/happiness and adds year to sickness
-    void printSickness(Person mainPerson, TextView tv){
+    void printSickness(Person mainPerson, TextView tv) {
 
         // if person is sick, display to screen
-        if(mainPerson.getSickness() != null){
+        if (mainPerson.getSickness() != null) {
 
             // if this is first year they have this sickness
-            if(mainPerson.getSickness().getYearsWith() == 0){
+            if (mainPerson.getSickness().getYearsWith() == 0) {
                 tv.append("You got sick with " + mainPerson.getSickness().getTitle() + ", which is " + mainPerson.getSickness().getDescription() + ". You should see a doctor");
-            }
-            else {
+            } else {
                 tv.append("You're still sick with " + mainPerson.getSickness().getTitle() + ".");
             }
 
@@ -295,7 +283,7 @@ public class MainGame extends AppCompatActivity {
     }
 
     // Prints first TextView to the ScrollView
-    void printFirstTextView(Person mainPerson){
+    void printFirstTextView(Person mainPerson) {
 
 
         /* DYAMICALLY ADDS TEXVIEW TO SCROLLVIEW */
@@ -312,13 +300,13 @@ public class MainGame extends AppCompatActivity {
         tv.setLayoutParams(lparams);
         tv.setTextSize(15);
         tv.setTextColor(Color.BLACK);
-        tv.setPadding(0,0,0,40);
+        tv.setPadding(0, 0, 0, 40);
 
         /*Sets Drawable for border on bottom of textview in scrollview*/
         final int sdk = android.os.Build.VERSION.SDK_INT;   // gets int version of os build
-        if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) // if os is less than Jelly Bean then make it drawable
+        if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) // if os is less than Jelly Bean then make it drawable
         {
-            tv.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.maingametextviewborderbottom) );
+            tv.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.maingametextviewborderbottom));
         } else {
             tv.setBackground(ContextCompat.getDrawable(this, R.drawable.maingametextviewborderbottom));
         }
@@ -326,7 +314,6 @@ public class MainGame extends AppCompatActivity {
 
         // Set Text Here !!!!!!!!!!!!!!!
         tv.setText(getString(R.string.InitialTextViewIntro, mainPerson.getName()));
-
 
 
         //get the parent layout for your new TextView and add the new TextView to it
@@ -337,26 +324,26 @@ public class MainGame extends AppCompatActivity {
 
         // Displays bankaccount balance now
         String bankBalanceString = formatToCurrency(mainPerson.getBankBalance());
-        Button bankAccountView = (Button)findViewById(R.id.bankView);
+        Button bankAccountView = (Button) findViewById(R.id.bankView);
         bankAccountView.setText("Bank Account\n" + bankBalanceString);
 
         // Updates ProgressBars
-        ProgressBar healthBar = (ProgressBar)findViewById(R.id.progressbarHealth);
+        ProgressBar healthBar = (ProgressBar) findViewById(R.id.progressbarHealth);
         healthBar.setProgress(mainPerson.getHealth());
-        ProgressBar happyBar = (ProgressBar)findViewById(R.id.progressbarHappy);
+        ProgressBar happyBar = (ProgressBar) findViewById(R.id.progressbarHappy);
         happyBar.setProgress(mainPerson.getHappiness());
 
     }
 
     // Constant --> Keeps scrollview focused downwards
-    void maintainScrollViewDown(){
+    void maintainScrollViewDown() {
         // All constant
         ScrollView scroll = findViewById(R.id.scrollviewmain);
         scroll.fullScroll(View.FOCUS_DOWN);
     }
 
     /*Takes in a double and returns a string formatted to currency*/
-    public String formatToCurrency(double money){
+    public String formatToCurrency(double money) {
 
         NumberFormat format = NumberFormat.getCurrencyInstance();
 
@@ -364,16 +351,16 @@ public class MainGame extends AppCompatActivity {
     }
 
     // Returns a random number in between a min/max
-    int randomNumberInBetweenMaxMin(int min, int max){
+    int randomNumberInBetweenMaxMin(int min, int max) {
         return (new Random()).nextInt((max - min) + 1) + min;
 
     }
 
     // hides activity bar and brings back top bar
     private void hideActivityBarBringBackTopBar() {
-        LinearLayout activityPopup =(LinearLayout)findViewById(R.id.activityPopup);
-        LinearLayout topBarLayout = (LinearLayout)findViewById(R.id.topbarlayout);
-        LinearLayout activityBarLinearLayout = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
+        LinearLayout activityPopup = (LinearLayout) findViewById(R.id.activityPopup);
+        LinearLayout topBarLayout = (LinearLayout) findViewById(R.id.topbarlayout);
+        LinearLayout activityBarLinearLayout = (LinearLayout) findViewById(R.id.activityBarLinearLayout);
 
         activityPopup.setVisibility(View.GONE);
         topBarLayout.setVisibility(View.VISIBLE);
@@ -381,12 +368,12 @@ public class MainGame extends AppCompatActivity {
     }
 
     // Randomly returns a string in an array
-    public String randArrayTitle(String[] jobTitles){
+    public String randArrayTitle(String[] jobTitles) {
 
         int size = jobTitles.length - 1; // size of array
 
 
-        int randomNum = (int)(Math.random() * ((size) + 1));
+        int randomNum = (int) (Math.random() * ((size) + 1));
         return jobTitles[randomNum];
 
     }
@@ -394,35 +381,41 @@ public class MainGame extends AppCompatActivity {
     // Allows them to choose a doctor from the list
     private void chooseDoctor(Person mainPerson) {
         // Makes Doctor Bar visible
-        RelativeLayout doctorPopup = (RelativeLayout)findViewById(R.id.doctorPopup);
+        RelativeLayout doctorPopup = (RelativeLayout) findViewById(R.id.doctorPopup);
         doctorPopup.setVisibility(View.VISIBLE);
 
-        Button drbutton1 = (Button)findViewById(R.id.drbutton1);
-        Button drbutton2 = (Button)findViewById(R.id.drbutton2);
-        Button drbutton3 = (Button)findViewById(R.id.drbutton3);
-        TextView feedbackText = (TextView)findViewById(R.id.feedbacktextdr);
+        Button drbutton1 = (Button) findViewById(R.id.drbutton1);
+        Button drbutton2 = (Button) findViewById(R.id.drbutton2);
+        Button drbutton3 = (Button) findViewById(R.id.drbutton3);
+        TextView feedbackText = (TextView) findViewById(R.id.feedbacktextdr);
 
         String docName1 = randArrayTitle(doctorNames);
         String docName2 = "";
         String docName3 = "";
-        do{
+        do {
             docName2 = randArrayTitle(doctorNames);
-        }while(docName2.equals(docName1));
-        do{
+        } while (docName2.equals(docName1));
+        do {
             docName3 = randArrayTitle(doctorNames);
-        }while (docName3.equals(docName1) || docName3.equals(docName2));
+        } while (docName3.equals(docName1) || docName3.equals(docName2));
 
         double costToTreat = mainPerson.getSickness().getCostToTreat();
 
-        drbutton1.setText(docName1 + " " + formatToCurrency(costToTreat/2));
+        drbutton1.setText(docName1 + " " + formatToCurrency(costToTreat / 2));
         drbutton2.setText(docName2 + " " + formatToCurrency(costToTreat));
         drbutton3.setText(docName3 + " " + formatToCurrency(costToTreat * 2));
 
 
     }
 
+    // Makes back button work after you click activities button
+    void activityBackButtonFunction() {
+        hideActivityBarBringBackTopBar();
+    }
+
+    // Possibly cures the person if they are sick
     private void curePerson(Person mainPerson, int doctorChosen) {
-        RelativeLayout doctorPopup = (RelativeLayout)findViewById(R.id.doctorPopup);
+        RelativeLayout doctorPopup = (RelativeLayout) findViewById(R.id.doctorPopup);
         int randomInt = randomNumberInBetweenMaxMin(1, 10);
         double costToTreat = mainPerson.getSickness().getCostToTreat();
         Toast failToast = Toast.makeText(getApplicationContext(),
@@ -432,48 +425,60 @@ public class MainGame extends AppCompatActivity {
                 "You were cured!", Toast.LENGTH_LONG);
 
 
-
-        if(doctorChosen == 1){
+        if (doctorChosen == 1) {
             // 40% chance of cure
-            if(randomInt <= 4){
+            if (randomInt <= 4) {
                 mainPerson.setSickness(null);
                 successToast.show();
                 doctorPopup.setVisibility(View.GONE);
-            }else{
+            } else {
                 failToast.show();
                 doctorPopup.setVisibility(View.GONE);
             }
 
-            mainPerson.setBankBalance(mainPerson.getBankBalance() - (costToTreat/2));
-        }
-        else if(doctorChosen == 2){
-            if(randomInt <= 6){
+            mainPerson.setBankBalance(mainPerson.getBankBalance() - (costToTreat / 2));
+        } else if (doctorChosen == 2) {
+            if (randomInt <= 6) {
                 mainPerson.setSickness(null);
                 successToast.show();
                 doctorPopup.setVisibility(View.GONE);
-            }else{
+            } else {
                 failToast.show();
                 doctorPopup.setVisibility(View.GONE);
             }
             mainPerson.setBankBalance(mainPerson.getBankBalance() - (costToTreat));
-        }
-        else if(doctorChosen == 3){
-            if(randomInt <= 8){
+        } else if (doctorChosen == 3) {
+            if (randomInt <= 8) {
                 mainPerson.setSickness(null);
                 successToast.show();
                 doctorPopup.setVisibility(View.GONE);
-            }
-            else
-            {
+            } else {
                 failToast.show();
                 doctorPopup.setVisibility(View.GONE);
             }
-            mainPerson.setBankBalance(mainPerson.getBankBalance() - (costToTreat*2));
+            mainPerson.setBankBalance(mainPerson.getBankBalance() - (costToTreat * 2));
         }
 
-        Button bankButton = (Button)findViewById(R.id.bankView);
+        Button bankButton = (Button) findViewById(R.id.bankView);
         bankButton.setText("Bank Account: \n" + formatToCurrency(mainPerson.getBankBalance()));
         mainPerson.setWentToDoctorThisTurn(true);
 
+    }
+
+    // Ends the life of the person and ends the game
+    private void killPerson(Person mainPerson) {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(MainGame.this).create();
+        alertDialog.setTitle("You died!");
+        alertDialog.setMessage(mainPerson.getName() + " died at age " + mainPerson.getAge() + ".");
+        alertDialog.setIcon(R.drawable.deathsymbol);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+        alertDialog.show();
     }
 }
