@@ -144,7 +144,16 @@ public class MainGame extends AppCompatActivity {
         drButton1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                curePerson(mainPerson, 1);
+                if(!mainPerson.isWentToDoctorThisTurn()){
+                    curePerson(mainPerson, 1);
+                }
+                else
+                {
+                    Toast failToast = Toast.makeText(getApplicationContext(),
+                            "You already went to the doctor. Wait until next year",
+                            Toast.LENGTH_LONG);
+                    failToast.show();
+                }
             }
         });
 
@@ -153,7 +162,16 @@ public class MainGame extends AppCompatActivity {
         drButton2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                curePerson(mainPerson, 2);
+                if(!mainPerson.isWentToDoctorThisTurn()){
+                    curePerson(mainPerson, 2);
+                }
+                else
+                {
+                    Toast failToast = Toast.makeText(getApplicationContext(),
+                            "You already went to the doctor. Wait until next year",
+                            Toast.LENGTH_LONG);
+                    failToast.show();
+                }
             }
         });
 
@@ -162,7 +180,17 @@ public class MainGame extends AppCompatActivity {
         drButton3.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                curePerson(mainPerson, 3);
+                if(!mainPerson.isWentToDoctorThisTurn()){
+                    curePerson(mainPerson, 3);
+                }
+                else
+                {
+                    Toast failToast = Toast.makeText(getApplicationContext(),
+                            "You already went to the doctor. Wait until next year",
+                            Toast.LENGTH_LONG);
+                    failToast.show();
+                }
+
             }
         });
 
@@ -185,6 +213,7 @@ public class MainGame extends AppCompatActivity {
 
 
     void nextAgeTextView(Person mainPerson){
+        mainPerson.setWentToDoctorThisTurn(false);
 
         maintainScrollViewDown(); // keeps scroll focused downward.
 
@@ -444,6 +473,7 @@ public class MainGame extends AppCompatActivity {
 
         Button bankButton = (Button)findViewById(R.id.bankView);
         bankButton.setText("Bank Account: \n" + formatToCurrency(mainPerson.getBankBalance()));
+        mainPerson.setWentToDoctorThisTurn(true);
 
     }
 }

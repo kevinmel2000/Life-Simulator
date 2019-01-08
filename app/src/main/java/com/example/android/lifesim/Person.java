@@ -13,6 +13,7 @@ public class Person implements Serializable {
     private int happiness;
     private int health;
     private Sickness sickness;
+    boolean wentToDoctorThisTurn;
 
     public Person(String name, int age, double bankBalance, int happiness, int health){
         this.name = name;
@@ -20,6 +21,7 @@ public class Person implements Serializable {
         this.bankBalance = bankBalance;
         this.happiness = happiness;
         this.health = health;
+        this.wentToDoctorThisTurn = false;
     }
 
 
@@ -37,12 +39,14 @@ public class Person implements Serializable {
     public int getHappiness() { return happiness; }
     public int getHealth() { return health; }
     public Sickness getSickness() { return sickness; }
+    public boolean isWentToDoctorThisTurn(){return wentToDoctorThisTurn;}
 
     /*SETTER FUNCTIONS*/
     public void setHealth(int health){ this.health = health; }
     public void setHappiness(int happiness){this.happiness = happiness;}
     public void setSickness(Sickness sickness){this.sickness = sickness;}
     public void setBankBalance(double bankBalance){this.bankBalance = bankBalance;}
+    public void setWentToDoctorThisTurn(boolean wentToDoctorThisTurn){this.wentToDoctorThisTurn = wentToDoctorThisTurn;}
 
     // makes person's age increase by one
     public void upAge() {
