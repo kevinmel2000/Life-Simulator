@@ -209,6 +209,7 @@
 
     </LinearLayout>
 
+    <!--After clicking "Activities" Button -->
     <LinearLayout
         android:id="@+id/activityPopup"
         android:layout_width="match_parent"
@@ -216,6 +217,7 @@
         android:background="@color/colorPrimary"
         android:visibility="gone"
         >
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -265,6 +267,100 @@
 
 
     </LinearLayout>
+    <!--**END - After clicking Activities button -->
+
+    <!-- Popup for doctor -->
+    <RelativeLayout
+        android:id="@+id/doctorPopup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        android:visibility="gone"
+            >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="5"
+            android:gravity="center">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/popupround"
+                android:layout_weight="0.5"
+                android:padding="40dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
+
+                    <ImageButton
+                        android:id="@+id/drbackbutton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/backbutton"
+                        android:layout_alignParentTop="true"/>
+
+
+                    <Button
+                        android:id="@+id/drbutton1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Doctor 1"
+                        android:textSize="18sp"
+                        android:background="@drawable/buttonbackground"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="100dp"
+                        android:padding="10dp" />
+
+                    <Button
+                        android:id="@+id/drbutton2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Doctor 2"
+                        android:textSize="18sp"
+                        android:background="@drawable/buttonbackground"
+                        android:layout_marginTop="40dp"
+                        android:layout_below="@+id/drbutton1"
+                        android:padding="10dp"/>
+
+                    <Button
+                        android:id="@+id/drbutton3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Doctor 2"
+                        android:textSize="18sp"
+                        android:background="@drawable/buttonbackground"
+                        android:layout_marginTop="40dp"
+                        android:layout_below="@+id/drbutton2"
+                        android:padding="10dp"/>
+
+                    <TextView
+                        android:id="@+id/feedbacktextdr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Choose a doctor"
+                        android:textColor="#fff"
+                        android:layout_below="@+id/drbutton3"
+                        android:layout_marginTop="30dp"
+                        android:textSize="15sp"
+                        android:layout_alignParentBottom="true"/>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <!--**END: Popup for doctor -->
+
 
 </RelativeLayout>
 

@@ -25,7 +25,7 @@ public class Sickness implements Serializable {
                 this.description = "Common cold, easily beatable with proper medicine";
                 this.damagePerTurn = 3;
                 this.happyDamagePerTurn = 6;
-                this.costToTreat = 0;
+                this.costToTreat = 10;
                 break;
             case "Pneumonia":
                 this.description = "Brought on by cold weather, pneumonia";

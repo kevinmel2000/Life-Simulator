@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +24,7 @@ import java.util.Random;
 
 public class MainGame extends AppCompatActivity {
 
-
+    String doctorNames[] = {"Mike Rable", "Murphy Morgan", "John Seplin", "Morgan Johnson", "Hank Freeman"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +117,7 @@ public class MainGame extends AppCompatActivity {
         });
 
         // Go to doctor office onclick button
-        LinearLayout doctorOfficeButton = (LinearLayout) findViewById(R.id.doctorOfficeButton);
+        final LinearLayout doctorOfficeButton = (LinearLayout) findViewById(R.id.doctorOfficeButton);
         doctorOfficeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,25 +129,60 @@ public class MainGame extends AppCompatActivity {
                             Toast.LENGTH_SHORT);
 
                     drerrortoast.show();
-                }else{
-
+                }
+                // if they are sick
+                else{
+                    hideActivityBarBringBackTopBar();
+                    chooseDoctor(mainPerson);
 
                 }
             }
         });
 
+        // if they choose dr. 1
+        Button drButton1 = (Button)findViewById(R.id.drbutton1);
+        drButton1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                curePerson(mainPerson, 1);
+            }
+        });
+
+        // if they choose dr. 2
+        Button drButton2 = (Button)findViewById(R.id.drbutton2);
+        drButton2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                curePerson(mainPerson, 2);
+            }
+        });
+
+        // if they choose dr. 3
+        Button drButton3 = (Button)findViewById(R.id.drbutton3);
+        drButton3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                curePerson(mainPerson, 3);
+            }
+        });
+
+        // Doctor Popup Back Button function
+        ImageButton drBackButton = (ImageButton) findViewById(R.id.drbackbutton);
+        drBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RelativeLayout doctorLayout = (RelativeLayout)findViewById(R.id.doctorPopup);
+                doctorLayout.setVisibility(View.GONE);
+            }
+        });
     }
+
 
     // Makes back button work after you click activities button 
     void activityBackButtonFunction() {
-        LinearLayout activityPopup =(LinearLayout)findViewById(R.id.activityPopup);
-        LinearLayout topBarLayout = (LinearLayout)findViewById(R.id.topbarlayout);
-        LinearLayout activityBarLinearLayout = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
-
-        activityPopup.setVisibility(View.GONE);
-        topBarLayout.setVisibility(View.VISIBLE);
-        activityBarLinearLayout.setVisibility(View.VISIBLE);
+        hideActivityBarBringBackTopBar();
     }
+
 
     void nextAgeTextView(Person mainPerson){
 
@@ -290,8 +326,6 @@ public class MainGame extends AppCompatActivity {
         scroll.fullScroll(View.FOCUS_DOWN);
     }
 
-
-
     /*Takes in a double and returns a string formatted to currency*/
     public String formatToCurrency(double money){
 
@@ -303,6 +337,113 @@ public class MainGame extends AppCompatActivity {
     // Returns a random number in between a min/max
     int randomNumberInBetweenMaxMin(int min, int max){
         return (new Random()).nextInt((max - min) + 1) + min;
+
+    }
+
+    // hides activity bar and brings back top bar
+    private void hideActivityBarBringBackTopBar() {
+        LinearLayout activityPopup =(LinearLayout)findViewById(R.id.activityPopup);
+        LinearLayout topBarLayout = (LinearLayout)findViewById(R.id.topbarlayout);
+        LinearLayout activityBarLinearLayout = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
+
+        activityPopup.setVisibility(View.GONE);
+        topBarLayout.setVisibility(View.VISIBLE);
+        activityBarLinearLayout.setVisibility(View.VISIBLE);
+    }
+
+    // Randomly returns a string in an array
+    public String randArrayTitle(String[] jobTitles){
+
+        int size = jobTitles.length - 1; // size of array
+
+
+        int randomNum = (int)(Math.random() * ((size) + 1));
+        return jobTitles[randomNum];
+
+    }
+
+    // Allows them to choose a doctor from the list
+    private void chooseDoctor(Person mainPerson) {
+        // Makes Doctor Bar visible
+        RelativeLayout doctorPopup = (RelativeLayout)findViewById(R.id.doctorPopup);
+        doctorPopup.setVisibility(View.VISIBLE);
+
+        Button drbutton1 = (Button)findViewById(R.id.drbutton1);
+        Button drbutton2 = (Button)findViewById(R.id.drbutton2);
+        Button drbutton3 = (Button)findViewById(R.id.drbutton3);
+        TextView feedbackText = (TextView)findViewById(R.id.feedbacktextdr);
+
+        String docName1 = randArrayTitle(doctorNames);
+        String docName2 = "";
+        String docName3 = "";
+        do{
+            docName2 = randArrayTitle(doctorNames);
+        }while(docName2.equals(docName1));
+        do{
+            docName3 = randArrayTitle(doctorNames);
+        }while (docName3.equals(docName1) || docName3.equals(docName2));
+
+        double costToTreat = mainPerson.getSickness().getCostToTreat();
+
+        drbutton1.setText(docName1 + " " + formatToCurrency(costToTreat/2));
+        drbutton2.setText(docName2 + " " + formatToCurrency(costToTreat));
+        drbutton3.setText(docName3 + " " + formatToCurrency(costToTreat * 2));
+
+
+    }
+
+    private void curePerson(Person mainPerson, int doctorChosen) {
+        RelativeLayout doctorPopup = (RelativeLayout)findViewById(R.id.doctorPopup);
+        int randomInt = randomNumberInBetweenMaxMin(1, 10);
+        double costToTreat = mainPerson.getSickness().getCostToTreat();
+        Toast failToast = Toast.makeText(getApplicationContext(),
+                "You failed to get cured. Better luck next time!",
+                Toast.LENGTH_LONG);
+        Toast successToast = Toast.makeText(getApplicationContext(),
+                "You were cured!", Toast.LENGTH_LONG);
+
+
+
+        if(doctorChosen == 1){
+            // 40% chance of cure
+            if(randomInt <= 4){
+                mainPerson.setSickness(null);
+                successToast.show();
+                doctorPopup.setVisibility(View.GONE);
+            }else{
+                failToast.show();
+                doctorPopup.setVisibility(View.GONE);
+            }
+
+            mainPerson.setBankBalance(mainPerson.getBankBalance() - (costToTreat/2));
+        }
+        else if(doctorChosen == 2){
+            if(randomInt <= 6){
+                mainPerson.setSickness(null);
+                successToast.show();
+                doctorPopup.setVisibility(View.GONE);
+            }else{
+                failToast.show();
+                doctorPopup.setVisibility(View.GONE);
+            }
+            mainPerson.setBankBalance(mainPerson.getBankBalance() - (costToTreat));
+        }
+        else if(doctorChosen == 3){
+            if(randomInt <= 8){
+                mainPerson.setSickness(null);
+                successToast.show();
+                doctorPopup.setVisibility(View.GONE);
+            }
+            else
+            {
+                failToast.show();
+                doctorPopup.setVisibility(View.GONE);
+            }
+            mainPerson.setBankBalance(mainPerson.getBankBalance() - (costToTreat*2));
+        }
+
+        Button bankButton = (Button)findViewById(R.id.bankView);
+        bankButton.setText("Bank Account: \n" + formatToCurrency(mainPerson.getBankBalance()));
 
     }
 }

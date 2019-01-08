@@ -42,6 +42,7 @@ public class Person implements Serializable {
     public void setHealth(int health){ this.health = health; }
     public void setHappiness(int happiness){this.happiness = happiness;}
     public void setSickness(Sickness sickness){this.sickness = sickness;}
+    public void setBankBalance(double bankBalance){this.bankBalance = bankBalance;}
 
     // makes person's age increase by one
     public void upAge() {
