@@ -29,7 +29,8 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity android:name=".doctorActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:label="Doctor's Office"
+            android:theme="@style/Theme.AppCompat.Dialog"
             ></activity>
     </application>
 
