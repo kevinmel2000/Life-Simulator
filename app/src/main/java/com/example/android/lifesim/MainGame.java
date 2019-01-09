@@ -598,6 +598,7 @@ public class MainGame extends AppCompatActivity {
     // Makes back button work after you click activities button
     void activityBackButtonFunction() {
         hideActivityBarBringBackTopBar();
+        maintainScrollViewDown();
     }
 
     // Possibly cures the person if they are sick
