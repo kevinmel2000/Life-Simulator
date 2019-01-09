@@ -212,6 +212,13 @@ public class MainGame extends AppCompatActivity {
         workoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(mainPerson.isWentToWorkoutThisTurn()){
+                    Toast workedOut = Toast.makeText(getApplicationContext(),
+                            "You already worked out. Wait until next year",
+                            Toast.LENGTH_LONG);
+                    workedOut.show();
+
+                }
 
                 // must be 12 or older to workout
                 if(mainPerson.getAge() > 12){
@@ -244,6 +251,7 @@ public class MainGame extends AppCompatActivity {
         }
 
         mainPerson.setWentToDoctorThisTurn(false);
+        mainPerson.setWentToWorkoutThisTurn(false);
 
         /* DYAMICALLY ADDS TEXVIEW TO SCROLLVIEW */
         //create a TextView with Layout parameters according to your needs
@@ -636,9 +644,9 @@ public class MainGame extends AppCompatActivity {
 
             happyBar.setProgress(newHappy);
             healthBar.setProgress(newHealth);
-
-
         }
+
+        mainPerson.setWentToWorkoutThisTurn(true);
     }
 
     // Allows mentally sick people to see the therapist
