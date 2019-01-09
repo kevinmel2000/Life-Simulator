@@ -13,10 +13,11 @@ public class Person implements Serializable {
     private int happiness;
     private int health;
     private Sickness sickness;
-    boolean wentToDoctorThisTurn;
-    boolean wentToWorkoutThisTurn;
+    private boolean wentToDoctorThisTurn;
+    private boolean wentToWorkoutThisTurn;
+    private String sexualOrientation;
 
-    public Person(String name, int age, double bankBalance, int happiness, int health){
+    Person(String name, int age, double bankBalance, int happiness, int health){
         this.name = name;
         this.age = age;
         this.bankBalance = bankBalance;
@@ -25,7 +26,6 @@ public class Person implements Serializable {
         this.wentToDoctorThisTurn = false;
         this.wentToWorkoutThisTurn = false;
     }
-
 
 
     /*GETTER FUNCTIONS*/
@@ -43,6 +43,7 @@ public class Person implements Serializable {
     public Sickness getSickness() { return sickness; }
     public boolean isWentToDoctorThisTurn(){return wentToDoctorThisTurn;}
     public boolean isWentToWorkoutThisTurn(){return wentToWorkoutThisTurn;}
+    public String getSexualOrientation() { return sexualOrientation; }
 
     /*SETTER FUNCTIONS*/
     public void setHealth(int health){ this.health = health; }
@@ -51,6 +52,7 @@ public class Person implements Serializable {
     public void setBankBalance(double bankBalance){this.bankBalance = bankBalance;}
     public void setWentToDoctorThisTurn(boolean wentToDoctorThisTurn){this.wentToDoctorThisTurn = wentToDoctorThisTurn;}
     public void setWentToWorkoutThisTurn(boolean wentToWorkoutThisTurn){this.wentToWorkoutThisTurn = wentToWorkoutThisTurn;}
+    public void setSexualOrientation(String sexualOrientation) { this.sexualOrientation = sexualOrientation; }
 
     // makes person's age increase by one
     public void upAge() {
@@ -95,5 +97,6 @@ public class Person implements Serializable {
             }
         }
     }
+
 
 }

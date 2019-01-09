@@ -409,7 +409,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/backbutton"
-                        android:layout_alignParentTop="true"/>
+                        android:layout_alignParentTop="true"
+                        android:visibility="visible"/>
+
+                    <TextView
+                        android:id="@+id/popupbarchoicetitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Question Title"
+                        android:textSize="25sp"
+                        android:textColor="#fff"
+                        android:layout_below="@id/drbackbutton"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:visibility="gone"/>
 
 
                     <Button
@@ -420,7 +435,7 @@
                         android:textSize="18sp"
                         android:background="@drawable/buttonbackground"
                         android:layout_alignParentTop="true"
-                        android:layout_marginTop="100dp"
+                        android:layout_marginTop="130dp"
                         android:padding="10dp" />
 
                     <Button

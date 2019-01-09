@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -253,6 +254,8 @@ public class MainGame extends AppCompatActivity {
         mainPerson.setWentToDoctorThisTurn(false);
         mainPerson.setWentToWorkoutThisTurn(false);
 
+
+
         /* DYAMICALLY ADDS TEXVIEW TO SCROLLVIEW */
         //create a TextView with Layout parameters according to your needs
         LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -283,6 +286,8 @@ public class MainGame extends AppCompatActivity {
         linearLayout.addView(topView);
         linearLayout.addView(tv);
 
+        ageFuncs(mainPerson, mainPerson.getAge(), tv);
+
 
         // Displays bankaccount balance now
         String bankBalanceString = formatToCurrency(mainPerson.getBankBalance());
@@ -300,6 +305,74 @@ public class MainGame extends AppCompatActivity {
         printSickness(mainPerson, tv);
 
         maintainScrollViewDown(); // keeps scroll focused downward.
+
+
+    }
+
+    // Depending on age, can make life choices
+    private void ageFuncs(Person mainPerson, int personAge, TextView tv){
+        switch (personAge){
+            case 13:
+                thirteenSexualOrientation(mainPerson, tv);
+                break;
+        }
+    }
+
+    // Popup at 13 years old which asks them for sexual orientation
+    private void thirteenSexualOrientation(final Person mainPerson, final TextView tv){
+
+        // Makes 3 Button Popup Bar visible
+        final RelativeLayout doctorPopup = (RelativeLayout) findViewById(R.id.doctorPopup);
+        doctorPopup.setVisibility(View.VISIBLE);
+
+        // Hides back button
+        final ImageButton drback = (ImageButton)findViewById(R.id.drbackbutton);
+        drback.setVisibility(View.GONE);
+
+        Button button1 = (Button) findViewById(R.id.drbutton1);
+        Button button2 = (Button) findViewById(R.id.drbutton2);
+        Button button3 = (Button) findViewById(R.id.drbutton3);
+        TextView feedbackText = (TextView) findViewById(R.id.feedbacktextdr);
+        feedbackText.setText("");
+        TextView titleText = (TextView)findViewById(R.id.popupbarchoicetitle);
+        titleText.setVisibility(View.VISIBLE);
+
+        String question = "Sexual Orientation";
+        titleText.setText(question);
+        button1.setText("Straight");
+        button2.setText("Bisexual");
+        button3.setText("Gay");
+
+        // They choose straight
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override public void onClick(View v){
+                mainPerson.setSexualOrientation("Straight");
+                doctorPopup.setVisibility(View.GONE);
+                drback.setVisibility(View.VISIBLE);
+                tv.append("You are now " + mainPerson.getSexualOrientation() + ".\n");
+            }
+        });
+
+        // They choose bisexual
+        button2.setOnClickListener(new View.OnClickListener(){
+            @Override public void onClick(View v){
+                mainPerson.setSexualOrientation("Bisexual");
+                doctorPopup.setVisibility(View.GONE);
+                drback.setVisibility(View.VISIBLE);
+                tv.append("You are now " + mainPerson.getSexualOrientation() + ".\n");
+            }
+        });
+
+        // they choose gay
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainPerson.setSexualOrientation("Gay");
+                doctorPopup.setVisibility(View.GONE);
+                drback.setVisibility(View.VISIBLE);
+                tv.append("You are now " + mainPerson.getSexualOrientation() + ".\n");
+            }
+        });
 
 
     }
