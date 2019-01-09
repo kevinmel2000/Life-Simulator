@@ -87,6 +87,7 @@ public class Person implements Serializable {
 
                 // Sets their new sickness as this sickness
                 this.sickness = sickness;
+                this.sickness.setYearsWith(0);
             }
         }
     }

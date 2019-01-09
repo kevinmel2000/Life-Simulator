@@ -218,14 +218,13 @@ public class MainGame extends AppCompatActivity {
 
     void nextAgeTextView(Person mainPerson) {
 
+
         // if their health hits 0 they die
         if (mainPerson.getHealth() <= 0) {
             killPerson(mainPerson);
         }
 
         mainPerson.setWentToDoctorThisTurn(false);
-
-        maintainScrollViewDown(); // keeps scroll focused downward.
 
         /* DYAMICALLY ADDS TEXVIEW TO SCROLLVIEW */
         //create a TextView with Layout parameters according to your needs
@@ -272,6 +271,8 @@ public class MainGame extends AppCompatActivity {
         // Person possibly gets sick here
         mainPerson.randomSickness();
         printSickness(mainPerson, tv);
+
+        maintainScrollViewDown(); // keeps scroll focused downward.
 
 
     }
@@ -335,11 +336,11 @@ public class MainGame extends AppCompatActivity {
         // if person is sick, display to screen
         if (mainPerson.getSickness() != null) {
 
-            // if this is first year they have this sickness
-            if (mainPerson.getSickness().getYearsWith() == 0) {
-                tv.append("You got sick with " + mainPerson.getSickness().getTitle() + ", which is " + mainPerson.getSickness().getDescription() + ". You should see a doctor");
-            } else {
+            if(mainPerson.getSickness().getYearsWith() > 0){
                 tv.append("You're still sick with " + mainPerson.getSickness().getTitle() + ".");
+            }
+            else if(mainPerson.getSickness().getYearsWith() == 0){
+                tv.append("You just got sick with " + mainPerson.getSickness().getTitle() + ", which is " + mainPerson.getSickness().getDescription());
             }
 
             mainPerson.getSickness().addYearToSickness();
@@ -409,9 +410,13 @@ public class MainGame extends AppCompatActivity {
 
     // Constant --> Keeps scrollview focused downwards
     void maintainScrollViewDown() {
-        // All constant
-        ScrollView scroll = findViewById(R.id.scrollviewmain);
-        scroll.fullScroll(View.FOCUS_DOWN);
+
+        final ScrollView scrollView = (ScrollView) findViewById(R.id.scrollviewmain);
+        scrollView.post(new Runnable() {
+            public void run() {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
     }
 
     /*Takes in a double and returns a string formatted to currency*/
