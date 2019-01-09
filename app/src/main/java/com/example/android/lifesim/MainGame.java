@@ -25,7 +25,7 @@ import java.util.Random;
 
 public class MainGame extends AppCompatActivity {
 
-    String doctorNames[] = {"Mike Rable", "Murphy Morgan", "John Seplin", "Morgan Johnson", "Hank Freeman"};
+    String doctorNames[] = {"Mike Rable", "Murphy Morgan", "John Seplin", "Morgan Johnson", "Hank Freeman", "Wilson Bennett", "Amy Peterson"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +138,67 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
-        // if they choose dr. 1
+        // Buy Lottery Ticket onClick button
+        final LinearLayout lotteryTicketButton = (LinearLayout)findViewById(R.id.lotteryTicketButton);
+        lotteryTicketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(mainPerson.getAge() < 18){
+                    Toast underage = Toast.makeText(getApplicationContext(),
+                            "You must be 18 to gamble",
+                            Toast.LENGTH_LONG);
+                    underage.show();
+                    return;
+                }
+
+                int randomNum = randomNumberInBetweenMaxMin(1, 1000);
+                int winning;
+                boolean won = true;
+
+                if(randomNum == 1000){
+                    winning = 150000;
+                }else if(randomNum <= 999 && randomNum >= 996){
+                    winning = 10000;
+                }else if(randomNum <= 995 && randomNum >= 990){
+                    winning = 1000;
+                }else if(randomNum <= 989 && randomNum >= 980){
+                    winning = 500;
+                }else if(randomNum <= 979 && randomNum >= 930){
+                    winning = 50;
+                }else if(randomNum <= 929 && randomNum >= 830){
+                    winning = 20;
+                }else if(randomNum <= 829 && randomNum >= 700){
+                    winning = 10;
+                }else if(randomNum <= 699 && randomNum >= 500){
+                    winning = 5;
+                }else{
+                    winning = 0;
+                    won = false;
+                }
+
+                if(won){
+                    Toast winToast = Toast.makeText(getApplicationContext(),
+                            "Congrats! You won " + formatToCurrency(winning),
+                            Toast.LENGTH_LONG);
+                    winToast.show();
+                }else{
+                    Toast loseToast = Toast.makeText(getApplicationContext(),
+                            "Sorry, you didn't win anything...",
+                            Toast.LENGTH_LONG);
+                    loseToast.show();
+                }
+
+                activityBackButtonFunction();
+                mainPerson.setBankBalance(mainPerson.getBankBalance() + winning);
+                Button bankButton = (Button)findViewById(R.id.bankView);
+                bankButton.setText("Bank Account\n" + formatToCurrency(mainPerson.getBankBalance()));
+
+
+            }
+        });
+
+        // if they choose Doctor 1
         Button drButton1 = (Button) findViewById(R.id.drbutton1);
         drButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,7 +214,7 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
-        // if they choose dr. 2
+        // if they choose Doctor 2
         Button drButton2 = (Button) findViewById(R.id.drbutton2);
         drButton2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +230,7 @@ public class MainGame extends AppCompatActivity {
             }
         });
 
-        // if they choose dr. 3
+        // if they choose Doctor 3
         Button drButton3 = (Button) findViewById(R.id.drbutton3);
         drButton3.setOnClickListener(new View.OnClickListener() {
             @Override

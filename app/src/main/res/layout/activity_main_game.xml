@@ -215,7 +215,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:visibility="gone"
+        android:visibility="visible"
         >
 
         <RelativeLayout
@@ -231,6 +231,7 @@
             android:src="@drawable/backbutton"
             />
 
+            <!-- Horizontal Layout for each new activity -->
         <LinearLayout
             android:id="@+id/doctorOfficeButton"
             android:layout_width="match_parent"
@@ -253,6 +254,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Doctor's Office"
+                android:fontFamily="sans-serif-condensed"
+                android:textColor="#000"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:textSize="20sp"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lotteryTicketButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/doctorOfficeButton"
+            android:background="@drawable/bottomborderlinearlayout"
+            android:padding="10dp"
+            android:clickable="true"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/lottery"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lottery Ticket ($5)"
                 android:fontFamily="sans-serif-condensed"
                 android:textColor="#000"
                 android:layout_marginLeft="15dp"
