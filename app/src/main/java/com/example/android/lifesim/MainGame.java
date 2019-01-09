@@ -26,6 +26,7 @@ import java.util.Random;
 public class MainGame extends AppCompatActivity {
 
     String doctorNames[] = {"Mike Rable", "Murphy Morgan", "John Seplin", "Morgan Johnson", "Hank Freeman", "Wilson Bennett", "Amy Peterson"};
+    String physicalInjuries[] = {"a Sprained Ankle", "a Broken Arm", "a Torn ACL"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -341,7 +342,7 @@ public class MainGame extends AppCompatActivity {
 
         // 0.5% chance to get sick with Gambling Addiction
         if(randNum2 == 157 && mainPerson.getSickness() == null){
-               Sickness gambleSick = new Sickness("Gambling Addiction");
+               Sickness gambleSick = new Sickness("a Gambling Addiction");
                mainPerson.setSickness(gambleSick);
         }
 
@@ -354,10 +355,10 @@ public class MainGame extends AppCompatActivity {
         if (mainPerson.getSickness() != null) {
 
             if(mainPerson.getSickness().getYearsWith() > 0){
-                tv.append("You're still sick with " + mainPerson.getSickness().getTitle() + ".");
+                tv.append("You're still suffering from " + mainPerson.getSickness().getTitle() + ".");
             }
             else if(mainPerson.getSickness().getYearsWith() == 0){
-                tv.append("You just got sick with " + mainPerson.getSickness().getTitle() + ", which is " + mainPerson.getSickness().getDescription());
+                tv.append("Oh no! You just got " + mainPerson.getSickness().getTitle() + ", which is " + mainPerson.getSickness().getDescription());
             }
 
             mainPerson.getSickness().addYearToSickness();
@@ -596,7 +597,19 @@ public class MainGame extends AppCompatActivity {
 
         // 5% chance of injury
         if(randNum == 9){
-            // make Person injured
+            // if they're already sick
+            if(mainPerson.getSickness() != null){
+                Toast badWorkout = Toast.makeText(getApplicationContext(),
+                        "You left since there were too many people there working out.",
+                        Toast.LENGTH_LONG);
+                badWorkout.show();
+            }else{
+                String randomInjury = randArrayTitle(physicalInjuries);
+                Sickness injury = new Sickness(randomInjury);
+                mainPerson.setSickness(injury);
+                Button bankButton = (Button)findViewById(R.id.bankView);
+                bankButton.setText("Bank Account\n" + mainPerson.getBankBalance());
+            }
         }else {
 
             int newHappy = mainPerson.getHappiness() + 5;
