@@ -442,6 +442,7 @@ public class MainGame extends AppCompatActivity {
         activityPopup.setVisibility(View.GONE);
         topBarLayout.setVisibility(View.VISIBLE);
         activityBarLinearLayout.setVisibility(View.VISIBLE);
+        maintainScrollViewDown();
     }
 
     // Randomly returns a string in an array
@@ -539,6 +540,7 @@ public class MainGame extends AppCompatActivity {
         Button bankButton = (Button) findViewById(R.id.bankView);
         bankButton.setText("Bank Account: \n" + formatToCurrency(mainPerson.getBankBalance()));
         mainPerson.setWentToDoctorThisTurn(true);
+        maintainScrollViewDown();
 
     }
 
