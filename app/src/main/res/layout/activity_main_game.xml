@@ -215,7 +215,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:visibility="gone"
+        android:visibility="visible"
         >
 
         <RelativeLayout
@@ -242,7 +242,7 @@
             android:layout_below="@+id/activityPopupBackButton"
             android:background="@drawable/bottomborderlinearlayout"
             android:layout_marginTop="10dp"
-            android:padding="10dp"
+            android:padding="20dp"
             android:clickable="true"
             >
 
@@ -275,7 +275,7 @@
             android:orientation="horizontal"
             android:layout_below="@+id/doctorOfficeButton"
             android:background="@drawable/bottomborderlinearlayout"
-            android:padding="10dp"
+            android:padding="20dp"
             android:clickable="true"
             >
 
@@ -300,6 +300,8 @@
         </LinearLayout>
             <!--***END: Lottery Ticket button -->
 
+
+            <!-- Workout Button -->
             <LinearLayout
                 android:id="@+id/workoutButton"
                 android:layout_width="match_parent"
@@ -307,7 +309,7 @@
                 android:orientation="horizontal"
                 android:layout_below="@+id/lotteryTicketButton"
                 android:background="@drawable/bottomborderlinearlayout"
-                android:padding="10dp"
+                android:padding="20dp"
                 android:clickable="true"
                 >
 
@@ -330,6 +332,8 @@
 
 
             </LinearLayout>
+
+            <!--***END: Workout button -->
 
         </RelativeLayout>
 

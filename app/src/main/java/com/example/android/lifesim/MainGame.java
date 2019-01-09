@@ -328,6 +328,15 @@ public class MainGame extends AppCompatActivity {
         mainPerson.setBankBalance(mainPerson.getBankBalance() + winning);
         Button bankButton = (Button)findViewById(R.id.bankView);
         bankButton.setText("Bank Account\n" + formatToCurrency(mainPerson.getBankBalance()));
+
+        int randNum2 = randomNumberInBetweenMaxMin(1,200);
+
+        // 0.5% chance to get sick with Gambling Addiction
+        if(randNum2 == 157 && mainPerson.getSickness() == null){
+               Sickness gambleSick = new Sickness("Gambling Addiction");
+               mainPerson.setSickness(gambleSick);
+        }
+
     }
 
     // Prints sickness to tv if they're sick and takes away their health/happiness and adds year to sickness
@@ -494,6 +503,18 @@ public class MainGame extends AppCompatActivity {
     // Possibly cures the person if they are sick
     private void curePerson(Person mainPerson, int doctorChosen) {
         RelativeLayout doctorPopup = (RelativeLayout) findViewById(R.id.doctorPopup);
+
+        // If they have a sickness needing a therapist
+        if(mainPerson.getSickness().getTitle().equals("Gambling Addiction")){
+            Toast therapistToast = Toast.makeText(getApplicationContext(),
+                    "The doctor says you should see a therapist",
+                    Toast.LENGTH_LONG);
+            therapistToast.show();
+            maintainScrollViewDown();
+            doctorPopup.setVisibility(View.GONE);
+            return;
+        }
+
         int randomInt = randomNumberInBetweenMaxMin(1, 10);
         double costToTreat = mainPerson.getSickness().getCostToTreat();
         Toast failToast = Toast.makeText(getApplicationContext(),
