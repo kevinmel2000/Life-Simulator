@@ -212,7 +212,17 @@ public class MainGame extends AppCompatActivity {
         workoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                workoutFunc(mainPerson);
+
+                // must be 12 or older to workout
+                if(mainPerson.getAge() > 12){
+                    workoutFunc(mainPerson);
+                }
+                else{
+                    Toast underage = Toast.makeText(getApplicationContext(),
+                            "You must be at least 13 to workout",
+                            Toast.LENGTH_LONG);
+                    underage.show();
+                }
             }
         });
 
