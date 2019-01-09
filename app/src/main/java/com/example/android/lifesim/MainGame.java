@@ -214,10 +214,40 @@ public class MainGame extends AppCompatActivity {
                 workoutFunc(mainPerson);
             }
         });
+
+        // Therapist button onClick function
+        LinearLayout therapistButton = (LinearLayout)findViewById(R.id.therapistButton);
+        therapistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // if person is not sick
+                if (mainPerson.getSickness() == null) {
+                    Toast drerrortoast = Toast.makeText(getApplicationContext(),
+                            "You must be unwell to go to the therapist.",
+                            Toast.LENGTH_SHORT);
+
+                    drerrortoast.show();
+                }
+                // if it is not a mental illness
+                else if(!mainPerson.getSickness().getType().equals("mental")){
+
+                    Toast notMental = Toast.makeText(getApplicationContext(),
+                            "You don't have a mental illness. Go see the doctor.", Toast.LENGTH_LONG);
+                    notMental.show();
+
+                }
+                // if they really are mentally ill
+                else {
+                    hideActivityBarBringBackTopBar();
+                    chooseDoctor(mainPerson);
+                }
+
+            }
+        });
     }
 
     void nextAgeTextView(Person mainPerson) {
-
 
         // if their health hits 0 they die
         if (mainPerson.getHealth() <= 0) {

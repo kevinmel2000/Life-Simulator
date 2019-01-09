@@ -9,6 +9,7 @@ public class Sickness implements Serializable {
     private int happyDamagePerTurn;
     private int yearsWith;
     private double costToTreat;
+    private String type = "physical";
 
 
     Sickness(String title){
@@ -16,21 +17,21 @@ public class Sickness implements Serializable {
 
         switch (title){
             case "Influenza":
-                this.description = "which is the normal flu, doc says you should be fine if you pay him a visit.\n";
+                this.description = "the normal flu, doc says you should be fine if you pay him a visit.\n";
                 this.damagePerTurn = 6;
                 this.happyDamagePerTurn = 12;
                 this.costToTreat = 40;
                 this.yearsWith = 0;
                 break;
             case "Common Cold":
-                this.description = "which is an easy fix by going to see a doctor";
+                this.description = "an easy fix by going to see a doctor";
                 this.damagePerTurn = 3;
                 this.happyDamagePerTurn = 6;
                 this.costToTreat = 10;
                 this.yearsWith = 0;
                 break;
             case "Pneumonia":
-                this.description = "which is brought on by cold weather, you should see a doctor for this.\n";
+                this.description = "brought on by cold weather, you should see a doctor for this.\n";
                 this.damagePerTurn = 10;
                 this.happyDamagePerTurn = 9;
                 this.costToTreat = 235;
@@ -42,6 +43,7 @@ public class Sickness implements Serializable {
                 this.happyDamagePerTurn = 15;
                 this.costToTreat = 100;
                 this.yearsWith = 0;
+                this.type = "mental";
         }
     }
 
@@ -54,6 +56,7 @@ public class Sickness implements Serializable {
     public int getHappyDamagePerTurn() { return happyDamagePerTurn; }
     public int getYearsWith() { return yearsWith; }
     public double getCostToTreat() { return costToTreat; }
+    public String getType() { return type; }
 
     // Setter functions
     public void setYearsWith(int yearsWith){ this.yearsWith = yearsWith; }
@@ -62,6 +65,7 @@ public class Sickness implements Serializable {
     public void addYearToSickness(){
         this.yearsWith += 1;
     }
+
 
 
 }
