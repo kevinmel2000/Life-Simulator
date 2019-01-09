@@ -215,7 +215,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        android:visibility="visible"
+        android:visibility="gone"
         >
 
         <RelativeLayout
@@ -232,6 +232,8 @@
             />
 
             <!-- Horizontal Layout for each new activity -->
+
+            <!-- Doctor office buton -->
         <LinearLayout
             android:id="@+id/doctorOfficeButton"
             android:layout_width="match_parent"
@@ -263,7 +265,9 @@
 
 
         </LinearLayout>
+            <!--***END: Doctor office buton -->
 
+            <!-- Lottery Ticket button -->
         <LinearLayout
             android:id="@+id/lotteryTicketButton"
             android:layout_width="match_parent"
@@ -294,6 +298,38 @@
 
 
         </LinearLayout>
+            <!--***END: Lottery Ticket button -->
+
+            <LinearLayout
+                android:id="@+id/workoutButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/lotteryTicketButton"
+                android:background="@drawable/bottomborderlinearlayout"
+                android:padding="10dp"
+                android:clickable="true"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/workout"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Workout"
+                    android:fontFamily="sans-serif-condensed"
+                    android:textColor="#000"
+                    android:layout_marginLeft="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    />
+
+
+            </LinearLayout>
 
         </RelativeLayout>
 

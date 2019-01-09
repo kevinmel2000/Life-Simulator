@@ -143,58 +143,7 @@ public class MainGame extends AppCompatActivity {
         lotteryTicketButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(mainPerson.getAge() < 18){
-                    Toast underage = Toast.makeText(getApplicationContext(),
-                            "You must be 18 to gamble",
-                            Toast.LENGTH_LONG);
-                    underage.show();
-                    return;
-                }
-
-                int randomNum = randomNumberInBetweenMaxMin(1, 1000);
-                int winning;
-                boolean won = true;
-
-                if(randomNum == 1000){
-                    winning = 150000;
-                }else if(randomNum <= 999 && randomNum >= 996){
-                    winning = 10000;
-                }else if(randomNum <= 995 && randomNum >= 990){
-                    winning = 1000;
-                }else if(randomNum <= 989 && randomNum >= 980){
-                    winning = 500;
-                }else if(randomNum <= 979 && randomNum >= 930){
-                    winning = 50;
-                }else if(randomNum <= 929 && randomNum >= 830){
-                    winning = 20;
-                }else if(randomNum <= 829 && randomNum >= 700){
-                    winning = 10;
-                }else if(randomNum <= 699 && randomNum >= 500){
-                    winning = 5;
-                }else{
-                    winning = 0;
-                    won = false;
-                }
-
-                if(won){
-                    Toast winToast = Toast.makeText(getApplicationContext(),
-                            "Congrats! You won " + formatToCurrency(winning),
-                            Toast.LENGTH_LONG);
-                    winToast.show();
-                }else{
-                    Toast loseToast = Toast.makeText(getApplicationContext(),
-                            "Sorry, you didn't win anything...",
-                            Toast.LENGTH_LONG);
-                    loseToast.show();
-                }
-
-                activityBackButtonFunction();
-                mainPerson.setBankBalance(mainPerson.getBankBalance() + winning);
-                Button bankButton = (Button)findViewById(R.id.bankView);
-                bankButton.setText("Bank Account\n" + formatToCurrency(mainPerson.getBankBalance()));
-
-
+                lotteryOddsFunc(mainPerson);
             }
         });
 
@@ -256,10 +205,20 @@ public class MainGame extends AppCompatActivity {
                 doctorLayout.setVisibility(View.GONE);
             }
         });
+
+        // Workout button onclick function
+        LinearLayout workoutButton = (LinearLayout)findViewById(R.id.workoutButton);
+        workoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                workoutFunc(mainPerson);
+            }
+        });
     }
 
     void nextAgeTextView(Person mainPerson) {
 
+        // if their health hits 0 they die
         if (mainPerson.getHealth() <= 0) {
             killPerson(mainPerson);
         }
@@ -315,6 +274,59 @@ public class MainGame extends AppCompatActivity {
         printSickness(mainPerson, tv);
 
 
+    }
+
+    // Allows player to play the lottery
+    private void lotteryOddsFunc(Person mainPerson) {
+        if(mainPerson.getAge() < 18){
+            Toast underage = Toast.makeText(getApplicationContext(),
+                    "You must be 18 to gamble",
+                    Toast.LENGTH_LONG);
+            underage.show();
+            return;
+        }
+
+        int randomNum = randomNumberInBetweenMaxMin(1, 1000);
+        int winning;
+        boolean won = true;
+
+        if(randomNum == 1000){
+            winning = 150000;
+        }else if(randomNum <= 999 && randomNum >= 996){
+            winning = 10000;
+        }else if(randomNum <= 995 && randomNum >= 990){
+            winning = 1000;
+        }else if(randomNum <= 989 && randomNum >= 980){
+            winning = 500;
+        }else if(randomNum <= 979 && randomNum >= 930){
+            winning = 50;
+        }else if(randomNum <= 929 && randomNum >= 830){
+            winning = 20;
+        }else if(randomNum <= 829 && randomNum >= 700){
+            winning = 10;
+        }else if(randomNum <= 699 && randomNum >= 500){
+            winning = 5;
+        }else{
+            winning = 0;
+            won = false;
+        }
+
+        if(won){
+            Toast winToast = Toast.makeText(getApplicationContext(),
+                    "Congrats! You won " + formatToCurrency(winning),
+                    Toast.LENGTH_LONG);
+            winToast.show();
+        }else{
+            Toast loseToast = Toast.makeText(getApplicationContext(),
+                    "Sorry, you didn't win anything...",
+                    Toast.LENGTH_LONG);
+            loseToast.show();
+        }
+
+        activityBackButtonFunction();
+        mainPerson.setBankBalance(mainPerson.getBankBalance() + winning);
+        Button bankButton = (Button)findViewById(R.id.bankView);
+        bankButton.setText("Bank Account\n" + formatToCurrency(mainPerson.getBankBalance()));
     }
 
     // Prints sickness to tv if they're sick and takes away their health/happiness and adds year to sickness
@@ -540,5 +552,33 @@ public class MainGame extends AppCompatActivity {
                     }
                 });
         alertDialog.show();
+    }
+
+    // Person works out and health/happy update
+    private void workoutFunc(Person mainPerson) {
+        int randNum = randomNumberInBetweenMaxMin(1, 20);
+
+        // 5% chance of injury
+        if(randNum == 9){
+            // make Person injured
+        }else {
+
+            int newHappy = mainPerson.getHappiness() + 5;
+            int newHealth = mainPerson.getHealth() + 5;
+            mainPerson.setHappiness(newHappy);
+            mainPerson.setHealth(newHealth);
+            Toast goodWorkout = Toast.makeText(getApplicationContext(),
+                    "You had a successful workout",
+                    Toast.LENGTH_LONG);
+            goodWorkout.show();
+
+            ProgressBar happyBar = (ProgressBar)findViewById(R.id.progressbarHappy);
+            ProgressBar healthBar = (ProgressBar)findViewById(R.id.progressbarHealth);
+
+            happyBar.setProgress(newHappy);
+            healthBar.setProgress(newHealth);
+
+
+        }
     }
 }
