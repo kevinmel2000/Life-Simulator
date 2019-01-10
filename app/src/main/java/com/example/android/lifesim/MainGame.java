@@ -4,13 +4,17 @@ import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.support.annotation.RestrictTo;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -321,58 +325,47 @@ public class MainGame extends AppCompatActivity {
     // Popup at 13 years old which asks them for sexual orientation
     private void thirteenSexualOrientation(final Person mainPerson, final TextView tv){
 
-        // Makes 3 Button Popup Bar visible
-        final RelativeLayout doctorPopup = (RelativeLayout) findViewById(R.id.doctorPopup);
-        doctorPopup.setVisibility(View.VISIBLE);
+        /*DisplayMetrics dm = new DisplayMetrics();
+        this.getWindow().getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
 
-        // Hides back button
-        final ImageButton drback = (ImageButton)findViewById(R.id.drbackbutton);
-        drback.setVisibility(View.GONE);
 
-        Button button1 = (Button) findViewById(R.id.drbutton1);
-        Button button2 = (Button) findViewById(R.id.drbutton2);
-        Button button3 = (Button) findViewById(R.id.drbutton3);
-        TextView feedbackText = (TextView) findViewById(R.id.feedbacktextdr);
-        feedbackText.setText("");
-        TextView titleText = (TextView)findViewById(R.id.popupbarchoicetitle);
-        titleText.setVisibility(View.VISIBLE);
 
-        String question = "Sexual Orientation";
-        titleText.setText(question);
-        button1.setText("Straight");
-        button2.setText("Bisexual");
-        button3.setText("Gay");
+        // Hide/Show what needs to be hidden or not
+        LinearLayout activityBarButtons = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
+        ScrollView scroll = (ScrollView)findViewById(R.id.scrollviewmain);
+        scroll.setVisibility(View.GONE);
+        activityBarButtons.setVisibility(View.GONE);
+        LinearLayout emptyLayout = (LinearLayout)findViewById(R.id.emptypopuplayout); // surrounding layout
+        emptyLayout.setVisibility(View.VISIBLE);
 
-        // They choose straight
-        button1.setOnClickListener(new View.OnClickListener(){
-            @Override public void onClick(View v){
-                mainPerson.setSexualOrientation("Straight");
-                doctorPopup.setVisibility(View.GONE);
-                drback.setVisibility(View.VISIBLE);
-                tv.append("You are now " + mainPerson.getSexualOrientation() + ".\n");
-            }
-        });
+        TextView title = new TextView(this);
+        Typeface face = Typeface.createFromAsset(getAssets(),
+                "fonts/Staatliches-Regular.ttf");
+        title.setText("Sexual Orientation");
+        title.setGravity(Gravity.CENTER_HORIZONTAL);
+        title.setTextSize(40);
+        title.setTextColor(Color.WHITE);
+        title.setTypeface(face);
 
-        // They choose bisexual
-        button2.setOnClickListener(new View.OnClickListener(){
-            @Override public void onClick(View v){
-                mainPerson.setSexualOrientation("Bisexual");
-                doctorPopup.setVisibility(View.GONE);
-                drback.setVisibility(View.VISIBLE);
-                tv.append("You are now " + mainPerson.getSexualOrientation() + ".\n");
-            }
-        });
+        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams buttonLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        buttonLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
-        // they choose gay
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainPerson.setSexualOrientation("Gay");
-                doctorPopup.setVisibility(View.GONE);
-                drback.setVisibility(View.VISIBLE);
-                tv.append("You are now " + mainPerson.getSexualOrientation() + ".\n");
-            }
-        });
+        LinearLayout buttonLayout = new LinearLayout(this);
+        buttonLayout.setBackgroundDrawable(getDrawable(R.color.colorAccent));
+        buttonLayout.setLayoutParams(buttonLayoutParams);
+
+        Button option1 = new Button(this);
+        option1.setLayoutParams(buttonParams);
+        option1.setText("Option 1");
+
+
+        emptyLayout.addView(title);
+        emptyLayout.addView(buttonLayout);
+        buttonLayout.addView(option1);*/
+
 
 
     }
@@ -598,7 +591,6 @@ public class MainGame extends AppCompatActivity {
     // Makes back button work after you click activities button
     void activityBackButtonFunction() {
         hideActivityBarBringBackTopBar();
-        maintainScrollViewDown();
     }
 
     // Possibly cures the person if they are sick
@@ -746,5 +738,15 @@ public class MainGame extends AppCompatActivity {
             hideActivityBarBringBackTopBar();
             chooseDoctor(mainPerson);
         }
+    }
+
+    private void addOrRemoveProperty(View view, int property, boolean flag){
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+        if(flag){
+            layoutParams.addRule(property);
+        }else {
+            layoutParams.removeRule(property);
+        }
+        view.setLayoutParams(layoutParams);
     }
 }

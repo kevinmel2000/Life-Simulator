@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainRelativeLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -451,7 +452,7 @@
                         android:id="@+id/popupbarchoicetitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Question Title"
+                        android:text=""
                         android:textSize="25sp"
                         android:textColor="#fff"
                         android:layout_below="@id/drbackbutton"
@@ -515,6 +516,43 @@
 
     </RelativeLayout>
     <!--**END: Popup for doctor -->
+
+    <LinearLayout
+        android:id="@+id/emptypopuplayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/topbarlayout"
+        android:gravity="center_horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily=""
+            android:text="Sexual Orientation"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            app:fontFamily="@font/aldrich" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/colorAccent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Option 1"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>
