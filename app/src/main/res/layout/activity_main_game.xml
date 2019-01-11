@@ -523,31 +523,30 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_centerInParent="true"
         android:layout_below="@+id/topbarlayout"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         >
 
         <TextView
+            android:id="@+id/emptypopuptitletext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily=""
-            android:text="Sexual Orientation"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
             android:textColor="#fff"
-            android:textSize="25sp"
-            app:fontFamily="@font/aldrich" />
+            android:textSize="30sp"
+            android:layout_marginTop="10dp"/>
 
         <LinearLayout
+            android:id="@+id/emptypopupbuttonlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@color/colorAccent">
+            android:gravity="center">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Option 1"/>
+
 
         </LinearLayout>
 

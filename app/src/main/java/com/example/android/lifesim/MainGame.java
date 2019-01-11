@@ -325,46 +325,93 @@ public class MainGame extends AppCompatActivity {
     // Popup at 13 years old which asks them for sexual orientation
     private void thirteenSexualOrientation(final Person mainPerson, final TextView tv){
 
-        /*DisplayMetrics dm = new DisplayMetrics();
+        DisplayMetrics dm = new DisplayMetrics();
         this.getWindow().getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
+        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        buttonParams.setMargins(0,0,0,120);
 
 
-        // Hide/Show what needs to be hidden or not
-        LinearLayout activityBarButtons = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
-        ScrollView scroll = (ScrollView)findViewById(R.id.scrollviewmain);
+        // Hide Layouts
+        final LinearLayout activityBarButtons = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
+        final ScrollView scroll = (ScrollView)findViewById(R.id.scrollviewmain);
         scroll.setVisibility(View.GONE);
         activityBarButtons.setVisibility(View.GONE);
-        LinearLayout emptyLayout = (LinearLayout)findViewById(R.id.emptypopuplayout); // surrounding layout
-        emptyLayout.setVisibility(View.VISIBLE);
 
-        TextView title = new TextView(this);
-        Typeface face = Typeface.createFromAsset(getAssets(),
-                "fonts/Staatliches-Regular.ttf");
-        title.setText("Sexual Orientation");
-        title.setGravity(Gravity.CENTER_HORIZONTAL);
-        title.setTextSize(40);
-        title.setTextColor(Color.WHITE);
-        title.setTypeface(face);
+        // Show layouts
+        final LinearLayout emptypopuplayout = (LinearLayout)findViewById(R.id.emptypopuplayout);
+        emptypopuplayout.setVisibility(View.VISIBLE);
+        final LinearLayout emptypopupbuttonlayout = (LinearLayout)findViewById(R.id.emptypopupbuttonlayout);
+        emptypopupbuttonlayout.setVisibility(View.VISIBLE);
 
-        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        RelativeLayout.LayoutParams buttonLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-        buttonLayoutParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        TextView emptypopuptitletext = (TextView)findViewById(R.id.emptypopuptitletext);
+        emptypopuptitletext.setText("Sexual Orientation");
 
-        LinearLayout buttonLayout = new LinearLayout(this);
-        buttonLayout.setBackgroundDrawable(getDrawable(R.color.colorAccent));
-        buttonLayout.setLayoutParams(buttonLayoutParams);
+        // Add Buttons
+        final Button button1 = new Button(this);
+        Button button2 = new Button(this);
+        Button button3 = new Button(this);
+        button1.setLayoutParams(buttonParams);
+        button2.setLayoutParams(buttonParams);
+        button3.setLayoutParams(buttonParams);
+        button1.setText("Straight");
+        button2.setText("Gay");
+        button3.setText("Bisexual");
+        button1.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.buttonbackground));
+        button2.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.buttonbackground));
+        button3.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.buttonbackground));
+        button1.setTextSize(18);
+        button2.setTextSize(18);
+        button3.setTextSize(18);
+        button1.setPadding(60, 30, 60 ,30);
+        button2.setPadding(60,30,60,30);
+        button3.setPadding(60,30,60,30);
 
-        Button option1 = new Button(this);
-        option1.setLayoutParams(buttonParams);
-        option1.setText("Option 1");
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                activityBarButtons.setVisibility(View.VISIBLE); // Makes old views visible
+                scroll.setVisibility(View.VISIBLE);
+                emptypopupbuttonlayout.removeAllViews(); // Deletes all buttons
+                emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
+                mainPerson.setSexualOrientation("Straight");
+                maintainScrollViewDown();
+                tv.setText("\nYou are " + mainPerson.getSexualOrientation());
 
+            }
+        });
 
-        emptyLayout.addView(title);
-        emptyLayout.addView(buttonLayout);
-        buttonLayout.addView(option1);*/
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activityBarButtons.setVisibility(View.VISIBLE); // Makes old views visible
+                scroll.setVisibility(View.VISIBLE);
+                emptypopupbuttonlayout.removeAllViews(); // Deletes all buttons
+                emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
+                mainPerson.setSexualOrientation("Gay");
+                maintainScrollViewDown();
+                tv.setText("\nYou are " + mainPerson.getSexualOrientation());
+            }
+        });
+
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activityBarButtons.setVisibility(View.VISIBLE); // Makes old views visible
+                scroll.setVisibility(View.VISIBLE);
+                emptypopupbuttonlayout.removeAllViews(); // Deletes all buttons
+                emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
+                mainPerson.setSexualOrientation("Bisexual");
+                maintainScrollViewDown();
+                tv.setText("\nYou are " + mainPerson.getSexualOrientation());
+            }
+        });
+
+        emptypopupbuttonlayout.addView(button1);
+        emptypopupbuttonlayout.addView(button2);
+        emptypopupbuttonlayout.addView(button3);
 
 
 
