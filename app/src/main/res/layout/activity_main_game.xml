@@ -366,43 +366,9 @@
 
 
             </LinearLayout>
-
             <!--***END: Therapist button -->
 
-            <!-- Love Button -->
 
-            <LinearLayout
-                android:id="@+id/loveButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_below="@+id/therapistButton"
-                android:background="@drawable/bottomborderlinearlayout"
-                android:padding="20dp"
-                android:clickable="true"
-                >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/hearticon"
-                    android:layout_marginLeft="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Love"
-                    android:fontFamily="sans-serif-condensed"
-                    android:textColor="#000"
-                    android:layout_marginLeft="15dp"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="20sp"
-                    />
-
-
-            </LinearLayout>
-
-            <!--***END: Love Button -->
 
         </RelativeLayout>
 

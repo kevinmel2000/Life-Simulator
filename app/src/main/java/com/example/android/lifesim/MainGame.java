@@ -246,6 +246,8 @@ public class MainGame extends AppCompatActivity {
                 visitTherapist(mainPerson);
             }
         });
+
+
     }
 
     void nextAgeTextView(Person mainPerson) {
@@ -304,9 +306,11 @@ public class MainGame extends AppCompatActivity {
         ProgressBar happyBar = (ProgressBar) findViewById(R.id.progressbarHappy);
         happyBar.setProgress(mainPerson.getHappiness());
 
+
         // Person possibly gets sick here
         mainPerson.randomSickness();
         printSickness(mainPerson, tv);
+
 
         maintainScrollViewDown(); // keeps scroll focused downward.
 
@@ -378,7 +382,7 @@ public class MainGame extends AppCompatActivity {
                 emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
                 mainPerson.setSexualOrientation("Straight");
                 maintainScrollViewDown();
-                tv.setText("\nYou are " + mainPerson.getSexualOrientation());
+                tv.setText("You are " + mainPerson.getSexualOrientation() + "\n");
 
             }
         });
@@ -392,7 +396,7 @@ public class MainGame extends AppCompatActivity {
                 emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
                 mainPerson.setSexualOrientation("Gay");
                 maintainScrollViewDown();
-                tv.setText("\nYou are " + mainPerson.getSexualOrientation());
+                tv.setText("You are " + mainPerson.getSexualOrientation() + "\n");
             }
         });
 
@@ -405,7 +409,7 @@ public class MainGame extends AppCompatActivity {
                 emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
                 mainPerson.setSexualOrientation("Bisexual");
                 maintainScrollViewDown();
-                tv.setText("\nYou are " + mainPerson.getSexualOrientation());
+                tv.setText("You are " + mainPerson.getSexualOrientation() + "\n");
             }
         });
 
