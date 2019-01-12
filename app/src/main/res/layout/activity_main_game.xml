@@ -514,7 +514,8 @@
             android:textColor="#fff"
             android:textSize="20sp"
             android:layout_marginTop="10dp"
-            android:text=""/>
+            android:text=""
+            android:visibility="gone"/>
 
         <LinearLayout
             android:id="@+id/emptypopupbuttonlayout"

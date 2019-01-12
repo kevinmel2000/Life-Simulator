@@ -32,6 +32,7 @@ public class MainGame extends AppCompatActivity {
 
     String doctorNames[] = {"Mike Rable", "Murphy Morgan", "John Seplin", "Morgan Johnson", "Hank Freeman", "Wilson Bennett", "Amy Peterson"};
     String physicalInjuries[] = {"a Sprained Ankle", "a Broken Arm", "a Torn ACL"};
+    String popuptemplates11to17[] = {"Marijuana", "Bullying"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -315,6 +316,7 @@ public class MainGame extends AppCompatActivity {
         maintainScrollViewDown(); // keeps scroll focused downward.
 
 
+        // What happens when you click the assets button
         Button assetsButton = (Button)findViewById(R.id.assetsButton);
         assetsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -338,8 +340,29 @@ public class MainGame extends AppCompatActivity {
                 break;
         }
 
-        if(specAge == false && personAge >= 14 && personAge <= 17){
-            popupTemplate(mainPerson, tv, "Marijuana", "Your friend offers you marijuana, will you take it or not?", "Take it","Don't take it", 10, -5, -10, 0, "take the marijuana");
+        // if they haven't already had a popup at this age and they're between 11-17
+        if(specAge == false && personAge >= 11 && personAge <= 17){
+
+            int randNum = randomNumberInBetweenMaxMin(1, 10);
+                // 20% chance
+            if(randNum <= 10 && randNum >= 1)
+            {
+                String popupEvent = "";
+                popuptemplate randEvent;
+
+
+                do{
+                    popupEvent = randArrayTitle(popuptemplates11to17);
+                    randEvent = new popuptemplate(popupEvent);
+                }while(randEvent.isDone() == true);
+
+
+
+
+                popupTemplate(mainPerson, tv, randEvent.getTitle(), randEvent.getDescription(), randEvent.getOption1(), randEvent.getOption2(), randEvent.getYesHappy(), randEvent.getYesHealth(), randEvent.getNoHappy(), randEvent.getNoHealth(), randEvent.getShortdesc());
+                randEvent.setDone(true);
+            }
+
 
         }
     }
@@ -366,8 +389,9 @@ public class MainGame extends AppCompatActivity {
         TextView emptypopuptitletext = (TextView)findViewById(R.id.emptypopuptitletext);
         emptypopuptitletext.setText(title);
 
-        TextView emptypopupdescription = (TextView)findViewById(R.id.emptypopupdescription);
+        final TextView emptypopupdescription = (TextView)findViewById(R.id.emptypopupdescription);
         emptypopupdescription.setText(description);
+        emptypopupdescription.setVisibility(View.VISIBLE);
 
         // Add Buttons
         final Button button1 = new Button(this);
@@ -389,6 +413,7 @@ public class MainGame extends AppCompatActivity {
                 activityBarButtons.setVisibility(View.VISIBLE); // Makes old views visible
                 scroll.setVisibility(View.VISIBLE);
                 emptypopupbuttonlayout.removeAllViews(); // Deletes all buttons
+                emptypopupdescription.setVisibility(View.GONE);
                 emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
 
                 mainPerson.setHappiness(mainPerson.getHappiness() + yesHappy);
@@ -408,6 +433,7 @@ public class MainGame extends AppCompatActivity {
                 activityBarButtons.setVisibility(View.VISIBLE); // Makes old views visible
                 scroll.setVisibility(View.VISIBLE);
                 emptypopupbuttonlayout.removeAllViews(); // Deletes all buttons
+                emptypopupdescription.setVisibility(View.GONE);
                 emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
 
                 mainPerson.setHappiness(mainPerson.getHappiness() + noHappy);
