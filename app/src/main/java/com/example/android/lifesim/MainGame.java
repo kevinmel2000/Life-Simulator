@@ -315,15 +315,148 @@ public class MainGame extends AppCompatActivity {
         maintainScrollViewDown(); // keeps scroll focused downward.
 
 
+        Button assetsButton = (Button)findViewById(R.id.assetsButton);
+        assetsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+
     }
 
     // Depending on age, can make life choices
     private void ageFuncs(Person mainPerson, int personAge, TextView tv){
+
+        boolean specAge = false;
+
         switch (personAge){
             case 13:
                 thirteenSexualOrientation(mainPerson, tv);
+                specAge = true;
                 break;
         }
+
+        if(specAge == false && personAge >= 14 && personAge <= 17){
+            popupTemplate(mainPerson, tv, "Marijuana", "Your friend offers you marijuana, will you take it or not?", "Take it","Don't take it", 10, -5, -10, 0, "take the marijuana");
+
+        }
+    }
+
+    // Template code for building a popup scenario
+    private void popupTemplate(final Person mainPerson, final TextView tv, final String title, String description, String option1, String option2, final int yesHappy, final int yesHealth, final int noHappy, final int noHealth, final String shortDesc){
+
+        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        buttonParams.setMargins(0,0,0,120);
+
+
+        // Hide Layouts
+        final LinearLayout activityBarButtons = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
+        final ScrollView scroll = (ScrollView)findViewById(R.id.scrollviewmain);
+        scroll.setVisibility(View.GONE);
+        activityBarButtons.setVisibility(View.GONE);
+
+        // Show layouts
+        final LinearLayout emptypopuplayout = (LinearLayout)findViewById(R.id.emptypopuplayout);
+        emptypopuplayout.setVisibility(View.VISIBLE);
+        final LinearLayout emptypopupbuttonlayout = (LinearLayout)findViewById(R.id.emptypopupbuttonlayout);
+        emptypopupbuttonlayout.setVisibility(View.VISIBLE);
+
+        TextView emptypopuptitletext = (TextView)findViewById(R.id.emptypopuptitletext);
+        emptypopuptitletext.setText(title);
+
+        TextView emptypopupdescription = (TextView)findViewById(R.id.emptypopupdescription);
+        emptypopupdescription.setText(description);
+
+        // Add Buttons
+        final Button button1 = new Button(this);
+        Button button2 = new Button(this);
+        button1.setLayoutParams(buttonParams);
+        button2.setLayoutParams(buttonParams);
+        button1.setText(option1); // yes option
+        button2.setText(option2); // no option
+        button1.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.buttonbackground));
+        button2.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.buttonbackground));
+        button1.setTextSize(18);
+        button2.setTextSize(18);
+        button1.setPadding(60, 30, 60 ,30);
+        button2.setPadding(60,30,60,30);
+
+        button1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                activityBarButtons.setVisibility(View.VISIBLE); // Makes old views visible
+                scroll.setVisibility(View.VISIBLE);
+                emptypopupbuttonlayout.removeAllViews(); // Deletes all buttons
+                emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
+
+                mainPerson.setHappiness(mainPerson.getHappiness() + yesHappy);
+                mainPerson.setHealth(mainPerson.getHealth() + yesHealth);
+
+                maintainScrollViewDown();
+                tv.setText("You decided to " + shortDesc + "\n");
+
+                popupTemplateTextHelper(tv, yesHappy, yesHealth, noHappy, noHealth, true);
+
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activityBarButtons.setVisibility(View.VISIBLE); // Makes old views visible
+                scroll.setVisibility(View.VISIBLE);
+                emptypopupbuttonlayout.removeAllViews(); // Deletes all buttons
+                emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
+
+                mainPerson.setHappiness(mainPerson.getHappiness() + noHappy);
+                mainPerson.setHealth(mainPerson.getHealth() + noHealth);
+
+
+                maintainScrollViewDown();
+                tv.setText("You decided not to " + shortDesc + "\n");
+
+                popupTemplateTextHelper(tv, yesHappy, yesHealth, noHappy, noHealth, false);
+            }
+        });
+
+        emptypopupbuttonlayout.addView(button1);
+        emptypopupbuttonlayout.addView(button2);
+
+
+    }
+
+    // Used in popupTemplate to help display text to TV
+    private void popupTemplateTextHelper(TextView tv, final int yesHappy, final int yesHealth, final int noHappy, final int noHealth, boolean yesOrNo){
+
+        if(yesOrNo == true){
+            // Output to console
+            if(yesHappy < 0){
+                tv.append("Happiness: " + yesHappy + "\n");
+            }else{
+                tv.append("Happiness: +" + yesHappy + "\n");
+            }
+            if(yesHealth < 0){
+                tv.append("Health: " + yesHealth + "\n");
+            }else{
+                tv.append("Health: +" + yesHealth + "\n");
+            }
+        }
+        else if(yesOrNo == false){
+            // Output to console
+            if(noHappy < 0){
+                tv.append("Happiness: " + noHappy + "\n");
+            }else{
+                tv.append("Happiness: +" + noHappy + "\n");
+            }
+            if(noHealth < 0){
+                tv.append("Health: " + noHealth + "\n");
+            }else{
+                tv.append("Health: +" + noHealth + "\n");
+            }
+        }
+
     }
 
     // Popup at 13 years old which asks them for sexual orientation
@@ -435,6 +568,7 @@ public class MainGame extends AppCompatActivity {
         int winning;
         boolean won = true;
 
+        // Winning logic
         if(randomNum == 1000){
             winning = 150000;
         }else if(randomNum <= 999 && randomNum >= 996){
@@ -469,7 +603,8 @@ public class MainGame extends AppCompatActivity {
         }
 
         activityBackButtonFunction();
-        mainPerson.setBankBalance(mainPerson.getBankBalance() + winning);
+
+        mainPerson.setBankBalance(mainPerson.getBankBalance() - 5 + winning);
         Button bankButton = (Button)findViewById(R.id.bankView);
         bankButton.setText("Bank Account\n" + formatToCurrency(mainPerson.getBankBalance()));
 
