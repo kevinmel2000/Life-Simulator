@@ -8,7 +8,6 @@ public class popuptemplate {
     private String option2;
     private int yesHappy, noHappy;
     private int yesHealth, noHealth;
-    private boolean done;
 
     public popuptemplate(String title){
         this.title = title;
@@ -23,7 +22,6 @@ public class popuptemplate {
                 this.yesHealth = -5;
                 this.noHappy = -10;
                 this.noHealth = 0;
-                this.done = false;
                 break;
             case "Bullying":
                 this.description = "You see a kid being picked on in the hallway, will you step in?";
@@ -34,7 +32,16 @@ public class popuptemplate {
                 this.yesHealth = 0;
                 this.noHappy = -10;
                 this.noHealth = 0;
-                this.done = false;
+                break;
+            case "Amusement Park":
+                this.description = "Your friend offers to take you to an amusement park with him, do you go?";
+                this.option1 = "Yes, go";
+                this.option2 = "No, stay home";
+                this.shortdesc = "go to the amusement park with your friend";
+                this.yesHappy = 15;
+                this.yesHealth = 0;
+                this.noHappy = -15;
+                this.noHealth = 0;
                 break;
 
         }
@@ -67,10 +74,8 @@ public class popuptemplate {
     public int getNoHealth() {
         return noHealth;
     }
-    public boolean isDone() { return done; }
 
 
     // Setters
-    public void setDone(boolean done) { this.done = done; }
 
 }

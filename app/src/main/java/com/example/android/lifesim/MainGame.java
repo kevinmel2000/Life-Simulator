@@ -32,7 +32,7 @@ public class MainGame extends AppCompatActivity {
 
     String doctorNames[] = {"Mike Rable", "Murphy Morgan", "John Seplin", "Morgan Johnson", "Hank Freeman", "Wilson Bennett", "Amy Peterson"};
     String physicalInjuries[] = {"a Sprained Ankle", "a Broken Arm", "a Torn ACL"};
-    String popuptemplates11to17[] = {"Marijuana", "Bullying"};
+    String popuptemplates11to17[] = {"Marijuana", "Bullying", "Amusement Park"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -342,25 +342,18 @@ public class MainGame extends AppCompatActivity {
 
         // if they haven't already had a popup at this age and they're between 11-17
         if(specAge == false && personAge >= 11 && personAge <= 17){
-
             int randNum = randomNumberInBetweenMaxMin(1, 10);
                 // 20% chance
-            if(randNum <= 10 && randNum >= 1)
+            if(randNum < 8 && randNum >= 6)
             {
                 String popupEvent = "";
                 popuptemplate randEvent;
 
-
-                do{
-                    popupEvent = randArrayTitle(popuptemplates11to17);
-                    randEvent = new popuptemplate(popupEvent);
-                }while(randEvent.isDone() == true);
-
-
-
+                // Make new event
+                popupEvent = randArrayTitle(popuptemplates11to17);
+                randEvent = new popuptemplate(popupEvent);
 
                 popupTemplate(mainPerson, tv, randEvent.getTitle(), randEvent.getDescription(), randEvent.getOption1(), randEvent.getOption2(), randEvent.getYesHappy(), randEvent.getYesHealth(), randEvent.getNoHappy(), randEvent.getNoHealth(), randEvent.getShortdesc());
-                randEvent.setDone(true);
             }
 
 
