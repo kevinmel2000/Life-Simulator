@@ -350,8 +350,20 @@ public class MainGame extends AppCompatActivity {
                 break;
         }
 
+        // if no popup has been shown and they're from ages 5 - 17
+        if(!specAge && personAge >= 5 && personAge <= 17){
+
+            int randNum = randomNumberInBetweenMaxMin(1, 10);
+            // 20% chance of this popup
+            if(randNum > 6 && randNum <= 8){
+                alertDialogFunc("Your grandma accidentally sent you two birthday cards", "Keep the money", "Give it back", -5, 0, 5, 0, 100, 50, mainPerson, tv);
+
+            }
+        }
+
+
         // if they haven't already had a popup at this age and they're between 11-17
-        if(specAge == false && personAge >= 11 && personAge <= 17){
+        if(!specAge && personAge >= 11 && personAge <= 17){
             int randNum = randomNumberInBetweenMaxMin(1, 10);
                 // 20% chance
             if(randNum < 8 && randNum >= 6)
@@ -374,6 +386,7 @@ public class MainGame extends AppCompatActivity {
     private void getHighSchoolJob(final Person mainPerson, final TextView tv) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
         builder.setTitle("You got offered a job as a Pizza Shop Worker");
 
         // add a list
@@ -908,6 +921,7 @@ public class MainGame extends AppCompatActivity {
     private void killPerson(Person mainPerson) {
 
         AlertDialog alertDialog = new AlertDialog.Builder(MainGame.this).create();
+        alertDialog.setCancelable(false);
         alertDialog.setTitle("You died!");
         alertDialog.setMessage(mainPerson.getName() + " died at age " + mainPerson.getAge() + ".");
         alertDialog.setIcon(R.drawable.deathsymbol);
@@ -995,4 +1009,72 @@ public class MainGame extends AppCompatActivity {
         }
         view.setLayoutParams(layoutParams);
     }
+
+    // For Alert Dialogs in ageFunc
+    private void alertDialogFunc(String questionTitle, final String option1, final String option2, final int yesHappy, final int yesHealth, final int noHappy, final int noHealth, final double wealthEffect, final double wealthEffectNo, final Person mainPerson, final TextView tv){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(questionTitle);
+        builder.setCancelable(false);
+
+        // add a list
+        String[] options = {option1, option2};
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0:
+                        // Option 1 clicked
+                        mainPerson.setHealth(mainPerson.getHealth() + yesHealth);
+                        mainPerson.setHappiness(mainPerson.getHappiness() + yesHappy);
+                        mainPerson.setBankBalance(mainPerson.getBankBalance() + wealthEffect);
+                        tv.append("You chose to " + option1 + ".\n");
+                        if(yesHappy != 0){
+                            tv.append("Happiness: " + plusMinusString((double)yesHappy) + "\n");
+                        }
+                        if(yesHealth != 0){
+                            tv.append("Health: " + plusMinusString((double)yesHealth) + "\n");
+                        }
+                        if(wealthEffect != 0){
+                            tv.append("Bank Account: " + plusMinusString(wealthEffect) + "\n");
+                        }
+                        break;
+                    case 1:
+                        // Option 2 clicked
+                        mainPerson.setHealth(mainPerson.getHealth() + noHealth);
+                        mainPerson.setHappiness(mainPerson.getHappiness() + noHappy);
+                        mainPerson.setBankBalance(mainPerson.getBankBalance() + wealthEffectNo);
+                        tv.append("You chose to " + option2 + ".\n");
+                        if(noHappy != 0){
+                            tv.append("Happiness: " + plusMinusString((double)noHappy) + "\n");
+                        }
+                        if(noHappy != 0){
+                            tv.append("Health: " + plusMinusString((double)noHappy) + "\n");
+                        }
+                        if(wealthEffectNo != 0){
+                            tv.append("Bank Account: " + plusMinusString(wealthEffectNo) + "\n");
+                        }
+
+                        break;
+
+                }
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    // Returns + and - in front of attribute
+    private String plusMinusString(double attribute) {
+        if(attribute < 0){
+            return "-" + attribute;
+        }else if(attribute > 0){
+            return "+" + attribute;
+        }else{
+            return "Unchanged";
+        }
+    }
+
 }

@@ -14,6 +14,9 @@ public class Job {
         }
     }
 
+
+
+
     // Getters
     public double getJobSalary() { return jobSalary; }
     public String getJobName() { return jobName; }
