@@ -15,8 +15,10 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -261,6 +263,10 @@ public class MainGame extends AppCompatActivity {
         mainPerson.setWentToDoctorThisTurn(false);
         mainPerson.setWentToWorkoutThisTurn(false);
 
+        // update person's bank account if they have a job
+        if(mainPerson.getJob() != null){
+            mainPerson.setBankBalance(mainPerson.getBankBalance() + mainPerson.getJob().getJobSalary());
+        }
 
 
         /* DYAMICALLY ADDS TEXVIEW TO SCROLLVIEW */
@@ -338,6 +344,10 @@ public class MainGame extends AppCompatActivity {
                 thirteenSexualOrientation(mainPerson, tv);
                 specAge = true;
                 break;
+            case 14:
+                getHighSchoolJob(mainPerson, tv);
+                specAge = true;
+                break;
         }
 
         // if they haven't already had a popup at this age and they're between 11-17
@@ -358,6 +368,37 @@ public class MainGame extends AppCompatActivity {
 
 
         }
+    }
+
+    // Offers them a high school job at age 14
+    private void getHighSchoolJob(final Person mainPerson, final TextView tv) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("You got offered a job as a Pizza Shop Worker");
+
+        // add a list
+        String[] options = {"Take the job", "No Thanks"};
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case 0: // YES
+                        // Set Job here
+                        Job highSchoolJob = new Job("Pizza Shop Worker");
+                        mainPerson.setJob(highSchoolJob);
+                        tv.append("You took the job as a Pizza Shop Worker and you are now making " + formatToCurrency(mainPerson.getJob().getJobSalary()));
+                        break;
+                    case 1: // NO
+                        tv.append("You decided not to take the job.\n");
+                        break;
+
+                }
+            }
+        });
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     // Template code for building a popup scenario
