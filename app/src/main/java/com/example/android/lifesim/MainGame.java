@@ -35,7 +35,7 @@ public class MainGame extends AppCompatActivity {
     String doctorNames[] = {"Mike Rable", "Murphy Morgan", "John Seplin", "Morgan Johnson", "Hank Freeman", "Wilson Bennett", "Amy Peterson", "Ty Milone"};
     String physicalInjuries[] = {"a Sprained Ankle", "a Broken Arm", "a Torn ACL"};
     String popuptemplates11to17[] = {"Marijuana", "Bullying", "Amusement Park"};
-    String popuptemplates5to17[] = {"Grandma"};
+    String popuptemplates5to17[] = {"Grandma", "Bicycle", "Study"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
