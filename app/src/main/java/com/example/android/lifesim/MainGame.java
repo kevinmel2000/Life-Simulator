@@ -32,9 +32,10 @@ import java.util.Random;
 
 public class MainGame extends AppCompatActivity {
 
-    String doctorNames[] = {"Mike Rable", "Murphy Morgan", "John Seplin", "Morgan Johnson", "Hank Freeman", "Wilson Bennett", "Amy Peterson"};
+    String doctorNames[] = {"Mike Rable", "Murphy Morgan", "John Seplin", "Morgan Johnson", "Hank Freeman", "Wilson Bennett", "Amy Peterson", "Ty Milone"};
     String physicalInjuries[] = {"a Sprained Ankle", "a Broken Arm", "a Torn ACL"};
     String popuptemplates11to17[] = {"Marijuana", "Bullying", "Amusement Park"};
+    String popuptemplates5to17[] = {"Grandma"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -300,6 +301,7 @@ public class MainGame extends AppCompatActivity {
         linearLayout.addView(tv);
 
         ageFuncs(mainPerson, mainPerson.getAge(), tv);
+        maintainScrollViewDown();
 
 
         // Displays bankaccount balance now
@@ -344,19 +346,20 @@ public class MainGame extends AppCompatActivity {
                 thirteenSexualOrientation(mainPerson, tv);
                 specAge = true;
                 break;
-            case 14:
-                getHighSchoolJob(mainPerson, tv);
-                specAge = true;
-                break;
         }
 
         // if no popup has been shown and they're from ages 5 - 17
         if(!specAge && personAge >= 5 && personAge <= 17){
 
             int randNum = randomNumberInBetweenMaxMin(1, 10);
-            // 20% chance of this popup
-            if(randNum > 6 && randNum <= 8){
-                alertDialogFunc("Your grandma accidentally sent you two birthday cards", "Keep the money", "Give it back", -5, 0, 5, 0, 100, 50, mainPerson, tv);
+
+            // 10% chance of this popup
+            if(randNum == 6){
+                String popupEvent = randArrayTitle(popuptemplates5to17); // generates string in this array
+                popuptemplate randGenEvent = new popuptemplate(popupEvent); // makes object of event
+
+                alertDialogFunc(randGenEvent.getDescription(), randGenEvent.getOption1(), randGenEvent.getOption2(), randGenEvent.getYesHappy(), randGenEvent.getYesHealth(), randGenEvent.getNoHappy(), randGenEvent.getNoHealth(), randGenEvent.getWealthEffect(), randGenEvent.getWealthEffectNo(), mainPerson, tv);
+                // String questionTitle, final String option1, final String option2, final int yesHappy, final int yesHealth, final int noHappy, final int noHealth, final double wealthEffect, final double wealthEffectNo, final Person mainPerson, final TextView tv
 
             }
         }
@@ -368,50 +371,16 @@ public class MainGame extends AppCompatActivity {
                 // 20% chance
             if(randNum < 8 && randNum >= 6)
             {
-                String popupEvent = "";
-                popuptemplate randEvent;
+                String popupEvent = randArrayTitle(popuptemplates11to17); // generates string in this array
+                popuptemplate randGenEvent = new popuptemplate(popupEvent); // makes object of event
 
-                // Make new event
-                popupEvent = randArrayTitle(popuptemplates11to17);
-                randEvent = new popuptemplate(popupEvent);
+                alertDialogFunc(randGenEvent.getDescription(), randGenEvent.getOption1(), randGenEvent.getOption2(), randGenEvent.getYesHappy(), randGenEvent.getYesHealth(), randGenEvent.getNoHappy(), randGenEvent.getNoHealth(), randGenEvent.getWealthEffect(), randGenEvent.getWealthEffectNo(), mainPerson, tv);
 
-                popupTemplate(mainPerson, tv, randEvent.getTitle(), randEvent.getDescription(), randEvent.getOption1(), randEvent.getOption2(), randEvent.getYesHappy(), randEvent.getYesHealth(), randEvent.getNoHappy(), randEvent.getNoHealth(), randEvent.getShortdesc());
             }
 
 
         }
-    }
 
-    // Offers them a high school job at age 14
-    private void getHighSchoolJob(final Person mainPerson, final TextView tv) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
-        builder.setTitle("You got offered a job as a Pizza Shop Worker");
-
-        // add a list
-        String[] options = {"Take the job", "No Thanks"};
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case 0: // YES
-                        // Set Job here
-                        Job highSchoolJob = new Job("Pizza Shop Worker");
-                        mainPerson.setJob(highSchoolJob);
-                        tv.append("You took the job as a Pizza Shop Worker and you are now making " + formatToCurrency(mainPerson.getJob().getJobSalary()));
-                        break;
-                    case 1: // NO
-                        tv.append("You decided not to take the job.\n");
-                        break;
-
-                }
-            }
-        });
-
-        // create and show the alert dialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
     // Template code for building a popup scenario
@@ -1022,12 +991,15 @@ public class MainGame extends AppCompatActivity {
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+                Button bankView = findViewById(R.id.bankView);
                 switch (which) {
                     case 0:
                         // Option 1 clicked
                         mainPerson.setHealth(mainPerson.getHealth() + yesHealth);
                         mainPerson.setHappiness(mainPerson.getHappiness() + yesHappy);
                         mainPerson.setBankBalance(mainPerson.getBankBalance() + wealthEffect);
+                        bankView.setText("Bank Account\n" + formatToCurrency(mainPerson.getBankBalance()));
                         tv.append("You chose to " + option1 + ".\n");
                         if(yesHappy != 0){
                             tv.append("Happiness: " + plusMinusString((double)yesHappy) + "\n");
@@ -1036,14 +1008,25 @@ public class MainGame extends AppCompatActivity {
                             tv.append("Health: " + plusMinusString((double)yesHealth) + "\n");
                         }
                         if(wealthEffect != 0){
-                            tv.append("Bank Account: " + plusMinusString(wealthEffect) + "\n");
+                            String wealthEffectString = "";
+                            if(wealthEffectNo < 0)
+                            {
+                                wealthEffectString = "-" + formatToCurrency(wealthEffect);
+                            }
+                            else
+                            {
+                                wealthEffectString = "+" + formatToCurrency(wealthEffect);
+                            }
+                            tv.append("Bank Account: " + wealthEffectString + "\n");
                         }
+                        maintainScrollViewDown();
                         break;
                     case 1:
                         // Option 2 clicked
                         mainPerson.setHealth(mainPerson.getHealth() + noHealth);
                         mainPerson.setHappiness(mainPerson.getHappiness() + noHappy);
                         mainPerson.setBankBalance(mainPerson.getBankBalance() + wealthEffectNo);
+                        bankView.setText("Bank Account\n" + formatToCurrency(mainPerson.getBankBalance()));
                         tv.append("You chose to " + option2 + ".\n");
                         if(noHappy != 0){
                             tv.append("Happiness: " + plusMinusString((double)noHappy) + "\n");
@@ -1052,8 +1035,18 @@ public class MainGame extends AppCompatActivity {
                             tv.append("Health: " + plusMinusString((double)noHappy) + "\n");
                         }
                         if(wealthEffectNo != 0){
-                            tv.append("Bank Account: " + plusMinusString(wealthEffectNo) + "\n");
+                            String wealthEffectString = "";
+                            if(wealthEffectNo < 0)
+                            {
+                                wealthEffectString = "-" + formatToCurrency(wealthEffectNo);
+                            }
+                            else
+                            {
+                                wealthEffectString = "+" + formatToCurrency(wealthEffectNo);
+                            }
+                            tv.append("Bank Account: " + wealthEffectString + "\n");
                         }
+                        maintainScrollViewDown();
 
                         break;
 
@@ -1069,7 +1062,7 @@ public class MainGame extends AppCompatActivity {
     // Returns + and - in front of attribute
     private String plusMinusString(double attribute) {
         if(attribute < 0){
-            return "-" + attribute;
+            return "" + attribute;
         }else if(attribute > 0){
             return "+" + attribute;
         }else{

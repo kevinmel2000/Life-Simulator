@@ -8,8 +8,8 @@ public class Job {
         this.jobName = jobName;
 
         switch (jobName){
-            case "Pizza Shop Worker":
-                jobSalary = 2500;
+            case "":
+                jobSalary = 0;
                 break;
         }
     }
