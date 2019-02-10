@@ -81,6 +81,40 @@ public class popuptemplate {
                 this.noHappy = 5;
                 this.wealthEffect = 0;
                 this.wealthEffectNo = 0;
+                break;
+            case "Homeless":
+                this.description = "You came across a homeless person";
+                this.option1 = "Give him $10";
+                this.option2 = "Walk on";
+                this.yesHealth = 0;
+                this.yesHappy = 10;
+                this.noHealth = 0;
+                this.noHappy = -10;
+                this.wealthEffect = -10;
+                this.wealthEffectNo = 0;
+                break;
+            case "Cousin":
+                this.description = "Your cousin you haven't seen in years called";
+                this.option1 = "Go to lunch with your cousin ($15)";
+                this.option2 = "Ignore your cousin";
+                this.yesHappy = 15;
+                this.yesHealth =0;
+                this.noHappy = -5;
+                this.noHealth = 0;
+                this.wealthEffect = -15;
+                this.wealthEffectNo = 0;
+                break;
+            case "Horse Race":
+                this.description = "You know a horse race is going to be rigged";
+                this.option1 = "Bet $500";
+                this.option2 = "Don't bet. That's wrong.";
+                this.yesHappy = 0;
+                this.yesHealth = 0;
+                this.noHealth = 0;
+                this.noHappy = 5;
+                this.wealthEffect = 1000;
+                this.wealthEffectNo = 0;
+                break;
 
         }
 

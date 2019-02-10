@@ -36,6 +36,7 @@ public class MainGame extends AppCompatActivity {
     String physicalInjuries[] = {"a Sprained Ankle", "a Broken Arm", "a Torn ACL"};
     String popuptemplates11to17[] = {"Marijuana", "Bullying", "Amusement Park"};
     String popuptemplates5to17[] = {"Grandma", "Bicycle", "Study"};
+    String popuptemplates18forLife[] = {"Homeless", "Cousin", "Horse Race"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -377,8 +378,16 @@ public class MainGame extends AppCompatActivity {
                 alertDialogFunc(randGenEvent.getDescription(), randGenEvent.getOption1(), randGenEvent.getOption2(), randGenEvent.getYesHappy(), randGenEvent.getYesHealth(), randGenEvent.getNoHappy(), randGenEvent.getNoHealth(), randGenEvent.getWealthEffect(), randGenEvent.getWealthEffectNo(), mainPerson, tv);
 
             }
+        }
 
+        if(!specAge && personAge >= 18){
+            int randNum = randomNumberInBetweenMaxMin(1, 10);
+            if(randNum < 8 && randNum >= 6){
+                String popupEvent = randArrayTitle(popuptemplates18forLife);
+                popuptemplate randGenEvent = new popuptemplate(popupEvent);
+                alertDialogFunc(randGenEvent.getDescription(), randGenEvent.getOption1(), randGenEvent.getOption2(), randGenEvent.getYesHappy(), randGenEvent.getYesHealth(), randGenEvent.getNoHappy(), randGenEvent.getNoHealth(), randGenEvent.getWealthEffect(), randGenEvent.getWealthEffectNo(), mainPerson, tv);
 
+            }
         }
 
     }
@@ -542,7 +551,7 @@ public class MainGame extends AppCompatActivity {
         // create and show the alert dialog
         AlertDialog dialog = builder.create();
         dialog.show();
-        
+
     }
 
     // Allows player to play the lottery
