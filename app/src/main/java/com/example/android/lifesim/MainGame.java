@@ -504,96 +504,45 @@ public class MainGame extends AppCompatActivity {
     // Popup at 13 years old which asks them for sexual orientation
     private void thirteenSexualOrientation(final Person mainPerson, final TextView tv){
 
-        DisplayMetrics dm = new DisplayMetrics();
-        this.getWindow().getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sexual Orientation");
+        builder.setCancelable(false);
 
-        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        buttonParams.setMargins(0,0,0,120);
-
-
-        // Hide Layouts
-        final LinearLayout activityBarButtons = (LinearLayout)findViewById(R.id.activityBarLinearLayout);
-        final ScrollView scroll = (ScrollView)findViewById(R.id.scrollviewmain);
-        scroll.setVisibility(View.GONE);
-        activityBarButtons.setVisibility(View.GONE);
-
-        // Show layouts
-        final LinearLayout emptypopuplayout = (LinearLayout)findViewById(R.id.emptypopuplayout);
-        emptypopuplayout.setVisibility(View.VISIBLE);
-        final LinearLayout emptypopupbuttonlayout = (LinearLayout)findViewById(R.id.emptypopupbuttonlayout);
-        emptypopupbuttonlayout.setVisibility(View.VISIBLE);
-
-        TextView emptypopuptitletext = (TextView)findViewById(R.id.emptypopuptitletext);
-        emptypopuptitletext.setText("Sexual Orientation");
-
-        // Add Buttons
-        final Button button1 = new Button(this);
-        Button button2 = new Button(this);
-        Button button3 = new Button(this);
-        button1.setLayoutParams(buttonParams);
-        button2.setLayoutParams(buttonParams);
-        button3.setLayoutParams(buttonParams);
-        button1.setText("Straight");
-        button2.setText("Gay");
-        button3.setText("Bisexual");
-        button1.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.buttonbackground));
-        button2.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.buttonbackground));
-        button3.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.buttonbackground));
-        button1.setTextSize(18);
-        button2.setTextSize(18);
-        button3.setTextSize(18);
-        button1.setPadding(60, 30, 60 ,30);
-        button2.setPadding(60,30,60,30);
-        button3.setPadding(60,30,60,30);
-
-        button1.setOnClickListener(new View.OnClickListener(){
+        // add a list
+        String[] options = {"Gay", "Straight", "Bisexual"};
+        builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v){
-                activityBarButtons.setVisibility(View.VISIBLE); // Makes old views visible
-                scroll.setVisibility(View.VISIBLE);
-                emptypopupbuttonlayout.removeAllViews(); // Deletes all buttons
-                emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
-                mainPerson.setSexualOrientation("Straight");
-                maintainScrollViewDown();
-                tv.setText("You are " + mainPerson.getSexualOrientation() + "\n");
+            public void onClick(DialogInterface dialog, int which) {
 
+                Button bankView = findViewById(R.id.bankView);
+                switch (which) {
+                    case 0:
+                        // Option 1 clicked
+                        mainPerson.setSexualOrientation("Gay");
+                        tv.append("You are gay");
+                        maintainScrollViewDown();
+                        break;
+                    case 1:
+                        // Option 2 clicked
+                        mainPerson.setSexualOrientation("Straight");
+                        tv.append("You are straight");
+                        maintainScrollViewDown();
+                        break;
+                    case 2:
+                        // Option 3 Clicked
+                        mainPerson.setSexualOrientation("Bisexual");
+                        tv.append("You are bisexual");
+                        maintainScrollViewDown();
+                        break;
+
+                }
             }
         });
 
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activityBarButtons.setVisibility(View.VISIBLE); // Makes old views visible
-                scroll.setVisibility(View.VISIBLE);
-                emptypopupbuttonlayout.removeAllViews(); // Deletes all buttons
-                emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
-                mainPerson.setSexualOrientation("Gay");
-                maintainScrollViewDown();
-                tv.setText("You are " + mainPerson.getSexualOrientation() + "\n");
-            }
-        });
-
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activityBarButtons.setVisibility(View.VISIBLE); // Makes old views visible
-                scroll.setVisibility(View.VISIBLE);
-                emptypopupbuttonlayout.removeAllViews(); // Deletes all buttons
-                emptypopuplayout.setVisibility(View.GONE); // Hides empty linear layout
-                mainPerson.setSexualOrientation("Bisexual");
-                maintainScrollViewDown();
-                tv.setText("You are " + mainPerson.getSexualOrientation() + "\n");
-            }
-        });
-
-        emptypopupbuttonlayout.addView(button1);
-        emptypopupbuttonlayout.addView(button2);
-        emptypopupbuttonlayout.addView(button3);
-
-
-
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        
     }
 
     // Allows player to play the lottery
